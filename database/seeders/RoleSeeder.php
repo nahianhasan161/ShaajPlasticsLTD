@@ -17,10 +17,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();;
+      /*   DB::table('users')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Role::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;'); */
 
        $roles = ['suadmin','admin','account','user'];
         foreach($roles as $role){
