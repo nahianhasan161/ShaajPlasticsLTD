@@ -24,6 +24,6 @@ class modal extends Component
      */
     public function render()
     {
-        return view('components.partials.modal');
+        return view('components.partials.modal')->with('title', $this->title);
     }
 }
