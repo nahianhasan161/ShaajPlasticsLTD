@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{$title}}</title>
+  <title>@if (isset($title)){{$title}}@else Create Form @endif</title>
 
     <style>
         @font-face{
@@ -81,7 +81,7 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('adminlte/dist/js/demo.js')}}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-@if($dashboard)
+@if (isset($dashboard))
 <script src="{{asset('adminlte/dist/js/pages/dashboard.js')}}"></script>
 @endif
 <!-- Livewire -->
