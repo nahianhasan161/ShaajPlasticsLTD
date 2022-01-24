@@ -21,7 +21,7 @@ class CreatePlasticProductsTable extends Migration
             $table->string('quantity');
             $table->string('weight');
             $table->string('stripes');
-            $table->string('Thickness');
+            $table->string('thickness');
             $table->string('packaging');
             $table->string('color');
             $table->string('price');
