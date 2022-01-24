@@ -28,6 +28,6 @@ class admin extends Component
      */
     public function render()
     {
-        return view('components.layout.admin');
+        return view('components.layout.admin')->with(['title'=>$this->title,'dashboard'=>$this->dashboard]);
     }
 }

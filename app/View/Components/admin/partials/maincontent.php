@@ -28,6 +28,6 @@ class maincontent extends Component
      */
     public function render()
     {
-        return view('components.admin.partials.maincontent');
+        return view('components.admin.partials.maincontent')->with(['title' => $this->title,'root' => $this->root,'child' => $this->child]);
     }
 }
