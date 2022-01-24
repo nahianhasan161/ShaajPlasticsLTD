@@ -8,7 +8,7 @@ use Livewire\Component;
 class PlasticProductTable extends Component
 {
 
-    protected $listeners = ['deleteConfirmed' ];
+    protected $listeners = ['deleteConfirmed','refresh' => '$refresh' ];
     public $bigPhoto;
 
     public function deleteConfirmed($id)

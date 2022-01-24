@@ -30,6 +30,7 @@ class CreateCompanyForm extends Component
         Company::create($validatedData['request']);
         $this->reset();
         $this->emit('showModal');
+        $this->emit('refresh');
         $this->emit('alert',['icon' => 'success','title' => 'Successfullty Created']);
     }
 

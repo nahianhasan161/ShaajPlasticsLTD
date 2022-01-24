@@ -52,6 +52,8 @@ class CreatePlasticProduct extends Component
         $this->validate();
         //dd($this->request);
         PlasticProduct::create($this->request);
+        $this->emit('showModal');
+        $this->emit('refresh');
         $this->emit('alert',['icon' => 'success' ,'title' => 'Product Has been Created']);
     }
     public function render()
