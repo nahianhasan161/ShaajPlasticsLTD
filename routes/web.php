@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\RowMetarialController;
+use App\Mail\OrderMail;
 use App\Models\RowMetarial;
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('components.Frontend.welcome');
+});
+/* Route::get('/email', function () {
+    return new OrderMail();
+}); */
+Route::get('send-mail', function () {
+
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+
+    Mail::to('your_receiver_email@gmail.com')->send(new OrderMail($details));
+
+    dd("Email is Sent.");
+});
+Route::get('/d6a498beb6922eb6d6e4575d97f5fdc2.html', function () {
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
