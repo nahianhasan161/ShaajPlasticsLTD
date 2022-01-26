@@ -1,0 +1,275 @@
+/* .client-title{
+  
+} */
+
+
+.caurasel-wrap{
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 20px 0px;
+  transition: all .3s ease-in-out;
+}
+
+.caurasel-wrap:hover{
+  margin-top: -10px;
+}
+.caurasel-wrap img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.caurasel-wrap p{
+  padding-top:10px;
+  font-weight: bold;
+  text-align: justify;
+  font-family: 'oswald';
+}
+
+.caurasel-wrap div{
+  padding: 10px 0px;
+}
+.caurasel-wrap div i{
+   color: #ff5200;
+}
+
+
+
+.caurasel-wrap h3{
+  font-family: 'roboto';
+  font-weight: bold;
+}
+
+
+/* progress bar start */
+/* .progress-wrap{
+  background-color: gray;
+  
+} */
+
+.progress-wrap li{
+  margin-bottom: 50px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  position: relative;
+  font-family: 'oswald';
+}
+
+.progress-wrap li::before{
+  content: '';
+  background:#2E3191;
+  position: absolute;
+  top: calc(100% + 15px);
+  height: 14px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.progress-wrap li::after{
+  content: '';
+  background:#006BAF;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 15px);
+  height: 14px;
+  width: 0%;
+  border-radius: 20px;
+  animation: progress 2s 1 2s forwards;
+}
+
+.progress-wrap li.production::after{
+  animation: production 2s 1 2s forwards;
+}
+
+
+@keyframes production {
+  from{
+    width: 0%;
+  }
+
+  to{
+    width: 90%;
+  }
+}
+
+.progress-wrap li.epc::after{
+  animation: epc 2s 1 2s forwards;
+}
+
+
+@keyframes epc {
+  from{
+    width: 0%;
+  }
+
+  to{
+    width: 80%;
+  }
+}
+.progress-wrap li.epc::after{
+  animation: epc 2s 1 2s forwards;
+}
+
+
+@keyframes epc {
+  from{
+    width: 0%;
+  }
+
+  to{
+    width: 80%;
+  }
+}
+
+.progress-wrap li.customer::after{
+  animation: customer 2s 1 2s forwards;
+}
+
+
+@keyframes customer {
+  from{
+    width:0%;
+  }
+
+  to{
+    width: 95%;
+  }
+}
+
+.progress-wrap li.rate::after{
+  animation: rate 2s 1 2s forwards;
+}
+
+
+@keyframes rate {
+  from{
+    width:0%;
+  }
+
+  to{
+    width: 85%;
+  }
+}
+
+.progress-wrap li.pro-done::after{
+  animation: pro-done 2s 1 2s forwards;
+}
+
+
+@keyframes pro-done {
+  from{
+    width:0%;
+  }
+
+  to{
+    width: 97%;
+  }
+}
+
+.progress-wrap li.trusted-client::after{
+  animation: trusted-client 2s 1 2s forwards;
+}
+
+
+@keyframes trusted-client {
+  from{
+    width:0%;
+  }
+
+  to{
+    width: 99%;
+  }
+}
+
+
+.inner-progress-side{
+  border: 1px solid wheat;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background: rgba(245, 239, 229,0.6);
+}
+
+.inner-progress-side h4{
+  font-family: 'oswald';
+}
+
+.inner-progress-side p{
+  font-weight: 500;
+}
+
+.network-inner-wrap img{
+  display: block;
+  margin: 0 auto;
+}
+
+.network-inner-wrap h3{
+  font-family: 'oswald';
+}
+.network-inner-wrap p{
+  font-weight:500;
+  font-family:'arial-black';
+  font-size:20px;
+}
+
+.wrap-cert-item{
+  position: relative;
+}
+.our-certification h4{
+  font-family: 'oswald';
+  font-weight: bold;
+}
+
+.single-certificate{
+  box-shadow: rgba(149, 157, 165, 0.7) 0px 8px 24px;
+  margin-bottom: 30px;
+  height: 300px;
+}
+
+.single-certificate img{
+  width: 100%;
+  height:100%
+}
+
+.single-certificate::before{
+  content: "";
+  position: absolute;
+  left: 10px;
+  bottom: 25px;
+  border-bottom: 5px solid var(--secondary);
+  border-left: 5px solid var(--secondary);
+  height: 30%;
+  width: 30%;
+  transition: all .5s ease;
+} 
+
+
+.single-certificate::after{
+  content: "";
+  position: absolute;
+  right:10px;
+  top: 0px;
+  border-top: 5px solid var(--secondary);
+  border-right: 5px solid var(--secondary);
+  height: 30%;
+  width: 30%;
+  transition: all .5s ease;
+}
+
+.single-certificate:hover{
+  border-radius:0px;
+}
+
+.single-certificate:hover::after{
+  height: 95%;
+  width: 97%; 
+}
+
+.single-certificate:hover::before{
+  height: 95%;
+  width: 97%; 
+}

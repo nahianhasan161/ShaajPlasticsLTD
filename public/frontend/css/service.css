@@ -1,0 +1,130 @@
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+/*----- common style for all start-----  */
+a{
+ text-decoration: none;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  list-style-type: none;
+}
+
+:root{
+  --primary: #006BAF;
+  --secondary: #2E3191;
+  --whitetype:#C9DFF6;
+  --gradient-color:linear-gradient(to right,  #C9DFF6 10%, var(--primary) 85%);
+}
+/*----- common style for all end-----  */
+
+.services{
+  background:white;
+  padding: 50px 0px;
+}
+
+.all-title h2{
+   text-align: center;
+   font-family: 'Roboto Slab', serif;
+   font-weight: bold;
+   font-size: 30px;
+}
+
+.items{
+  position: relative;
+}
+
+.service-item{
+  /* border: 1px solid var(--primary); */
+  border-radius: 20px 0px;
+  padding: 20px;
+  margin: 10px;
+  transition:all .5s;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 24px;
+}
+
+
+.service-item::before{
+  content: "";
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
+  border-bottom: 5px solid var(--secondary);
+  border-left: 5px solid var(--secondary);
+  height: 30%;
+  width: 30%;
+  transition: all .5s ease;
+} 
+
+
+.service-item::after{
+  content: "";
+  position: absolute;
+  right:16px;
+  top: 6px;
+  border-top: 5px solid var(--secondary);
+  border-right: 5px solid var(--secondary);
+  height: 30%;
+  width: 30%;
+  transition: all .5s ease;
+}
+
+.service-item:hover{
+  border-radius:0px;
+}
+
+.service-item:hover::after{
+  /* border-radius: 0px 0px 30px 30px;
+  border-top-left-radius: 30px; */
+  height: 100%;
+  width: 95%; 
+}
+
+.service-item:hover::before{
+  /* border-radius: 0px 0px 30px 30px;
+  border-top-left-radius: 30px; */
+  height: 100%;
+  width: 95%; 
+}
+
+/* .service-item:hover{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 24px;
+  margin-top: -1px;
+  background: var(--gradient-color);
+} */
+.service-item h2{
+  text-align: center;
+  color: var(--secondary);
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+  font-size: 26px;
+  padding: 5px 0px;
+}
+.service-item p{
+  text-align: justify;
+  color: black;
+  font-size: 17px;
+  font-weight: 400;
+  font-family: 'oswald';
+}
+
+/* delevry */
+
+.under-photo{
+  background-color: var(--secondary);
+  padding: 40px 0px;
+}
+
+.delevery{
+  background-color:white;
+}
+.delevery img{
+  /* width: 100%; */
+  height: 200px;
+  width: 300px;
+}

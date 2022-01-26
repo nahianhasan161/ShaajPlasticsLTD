@@ -1,143 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaaj Plastic</title>
-<!--------- Bootstrap link  ------------>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<!--------- Bootstrap link  ------------>
-
-<!------------ css link ------------>
-    <link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
-<!------------ css link ------------>
-
-<!-- ----ashley font------>
-<link href="//db.onlinewebfonts.com/c/013e904f64d24e4b4e5f8db7bb96d9b9?family=Ashley+Inline" rel="stylesheet" type="text/css"/>
-<!------ashley font---- -->
-
-<!--------- google fonts --------->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<!--------- google fonts --------->
-
-
-
-<!--------- font Awesome link  ------------>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<!--------- font Awesome link  ------------>
-
-</head>
-<body>
+<x-layout.master>
 
 
 
 
 
-<header>
-  <div class="subheader">
-    <div class="sub-item">
-      <p> <i class="fa fa-phone m-2"></i> Hotline: 01748986129</p>
-      <p><i class="fa fa-map-marker m-2"></i> Lalbagh Dhaka</p>
-      <p><i class="fa fa-envelope m-2"></i> shajPlasticind@gmail.com<p>
-        <p>
-          <i class="fab fa-facebook m-2"></i>
-          <i class="fab fa-twitter m-2"></i>
-          <i class="fab fa-youtube m-2"></i>
-          <i class="fab fa-linkedin m-2"></i>
-        </p>
 
-        <div class="footer-buttons" style="margin-top: -10px;">
-          <button><i class="fa fa-sms"></i> Send SMS</button>
-          <button><i class="fa fa-envelope"></i> Send Email</button>
-        </div>
+<x-Frontend.partials.header></x-Frontend.partials.header>
 
-    </div>
-  </div>
-
-
-
-  <div class="main-header">
-    <div class="main-header-wrap">
-<!-- title for large secreen -->
-      <div class="heading">
-        <div class="heading-item">
-          <div>
-            <a href="#"><img src="{{asset('Frontend/images/logo1.png')}}" alt="" class="mt-2"></a>
-          </div>
-          <div>
-            <h2 class="heading-title">Shaaj Plastic Industries</h2>
-          </div>
-          <div class="for-serch first-search-bar">
-            <input type="search" placeholder="Search" class="searchbar">
-          <i class="fa fa-search searchIcon"></i>
-          </div>
-        </div>
-      </div>
- <!-- title for large secreen -->
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-        <a class="navbar-brand" href="#"><img src="{{asset('Frontend/images/logo1.png')}}" alt="" class="small-logo"></a>
-
-<!-- title for small screen initially it will be hide. when screen size will be 991px it will be show-->
-          <div class="title-wrapepr">
-            <div class="title">
-              <h2 class="text-center">Shaaj Plastic Industries </h2>
-            </div>
-          </div>
-<!-- title for small screen -->
-
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span><i class="fas fa-bars bar"></i></span>
-      </button>
-        <div class="collapse navbar-collapse headerflex" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item active">
-              <a class="nav-link bg-info" href="{{route('admin.dashboard')}}">Home</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="product.html">Product</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="service.html">Services</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link contact" href="contact.html">Contacts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link contact" href="/login">login</a>
-            </li>
-
-            <!-- <li class="nav-item">
-              <a class="nav-link contact" href="signIn.html">Sign In</a>
-            </li>
-         -->
-
-            <li>
-              <div class="for-serch responsive">
-                <input type="search" placeholder="Search" class="searchbar">
-              <i class="fa fa-search searchIcon"></i>
-              </div>
-            </li>
-          </ul>
-
-        </div>
-      </nav>
-    </div>
-  </div>
-</header>
 
 <div class="preloader"> <img src="{{asset('Frontend/images/logo1.png')}}" alt="" class="pre-img"></div>
 <!-- This brake is used to lower the header photo -->
@@ -289,7 +158,7 @@
 
   </div>
 
-  <a href="product.html">
+  <a href="{{route('products')}}">
     <button class="all-product-btn">view all product</button>
   </a>
 </section>
@@ -324,111 +193,7 @@
 
 <!-- tell us what are you looking for end-->
 
-
-<!-- footer start -->
-<footer class="main-fotter pb-5">
-  <div class="container">
+<x-Frontend.partials.footer></x-Frontend.partials.footer>
 
 
-<div class="fotter-content">
-
- <div class="row">
-
-   <div class="col-lg-3 col-md-6">
-      <div class="fotter-content-one">
-        <h4>Shaaj Plastic Ind.</h4>
-        <p>Anikul Islam (Proprietor)</p>
-        <p>54, Khaje Dewan, 1st Lane</p>
-        <p> Lalbagh Dhaka</p>
-        <p>Hotline: 01748986129</p>
-        <p> Corporate Brochure</p>
-        <p>Contact Us</p>
-        <p>Sitemap</p>
-        <p>Privicy Policy</p>
-      </div>
-   </div>
-
-
-   <div class="col-lg-3 col-md-6">
-     <div class="fotter-content-one">
-       <h4>Company Profile</h4>
-       <p>Home</p>
-       <p> Profile</p>
-       <p>Our Product Range</p>
-       <p>Corporate Video</p>
-       <p>Corporate Presentation</p>
-       <p> Corporate Brochure</p>
-       <p>Contact Us</p>
-       <p>Sitemap</p>
-     </div>
-  </div>
-
-
-
-
-  <div class="col-lg-3 col-md-6">
-   <div class="fotter-content-one">
-     <h4>Products & Services</h4>
-     <p>Plastic Cloth Hangers</p>
-     <p>Bottom Hangers</p>
-     <p>Hanger Hooks</p>
-     <p>Multi Pack Hangers</p>
-     <p>Plastic Top Hangers With Metal Hook</p>
-     <p>Belt Hangers</p>
-     <p>Frock Hangers</p>
-     <p>Lingerie Hangers</p>
-   </div>
-</div>
-
-
-
-
-<div class="col-lg-3 col-md-6">
- <div class="fotter-content-one">
-   <h4>Corporate Video</h4>
-
-   <div>
-     <p>here will be video</p>
-   </div>
-
- </div>
-</div>
-
-
- </div>
-</div>
-
-
-</div>
-
-<div class="footer-buttons container mt-4">
-  <button><i class="fa fa-sms m-2"></i> Send SMS</button>
-  <button><i class="fa fa-envelope m-2"></i> Send Email</button>
-</div>
-
-<div class="fotter-socialmedia container mt-4">
- <a href=""><i class="fab fa-linkedin"></i></a>
- <a href=""><i class="fab fa-facebook-f"></i></a>
- <a href=""><i class="fab fa-twitter"></i></a>
- <a href=""><i class="fab fa-instagram"></i></a>
-</div>
-
-<div class="top-icon">
-  <a href="#">
-    <i class="fa fa-angle-up"></i>
-  </a>
-</div>
-</footer>
-<!-- footer end -->
-
-<!---- Bootstrap4 jquery proper and link start-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-<!--Bootstrap4 jquery proper and link start -->
-
-<script src="{{asset('frontend/js/index.js')}}"></script>
-</body>
-</html>
+</x-layout.master>

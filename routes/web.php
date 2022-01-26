@@ -17,10 +17,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// !FrontENd
 Route::get('/', function () {
     return view('components.Frontend.welcome');
-});
+})->name('welcome');
+Route::get('/products', function () {
+    return view('components.Frontend.products');
+})->name('products');
+Route::get('/services', function () {
+    return view('components.Frontend.servies');
+})->name('services');
+
+Route::get('/about', function () {
+    return view('components.Frontend.about');
+})->name('about');
+
+Route::get('/contacts', function () {
+    return view('components.Frontend.contacts');
+})->name('contacts');
+
+// !FrontENd
+
+// !Mail Testing
 /* Route::get('/email', function () {
     return new OrderMail();
 }); */
@@ -28,17 +46,19 @@ Route::get('send-mail', function () {
 
 
 
-    Mail::to('nahianhasan121@gmail.com')->send(new OrderMail());
+    Mail::to('nahianhasan161@gmail.com')->send(new OrderMail());
 
     dd("Email is Sent.");
 });
 Route::get('/d6a498beb6922eb6d6e4575d97f5fdc2.html', function () {
     return view('welcome');
 });
-
+// !Mail Testing
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// !Admin
 Route::group([
 'prefix' => 'admin','as' => 'admin.','middleware' => ['role:admin']
 ],function(){
@@ -85,6 +105,7 @@ Route::group([
 
 });
 
+// !End Admin
 Route::get('/userset/{id}', [RowMetarialController::class, 'show']);
 Route::get('row-metarial/{{id}}', [RowMetarialController::class,'show']);
 require __DIR__.'/auth.php';
