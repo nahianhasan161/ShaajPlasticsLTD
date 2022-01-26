@@ -36,6 +36,10 @@ Route::get('/contacts', function () {
     return view('components.Frontend.contacts');
 })->name('contacts');
 
+Route::get('/user/login', function () {
+    return view('components.Frontend.login');
+})->name('user.login');
+
 // !FrontENd
 
 // !Mail Testing

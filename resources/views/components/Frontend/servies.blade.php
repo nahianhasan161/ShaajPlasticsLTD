@@ -11,6 +11,7 @@
 
 
  <x-Frontend.partials.header></x-Frontend.partials.header>
+ <x-Frontend.partials.preloader></x-Frontend.partials.preloader>
 
 
  <section class="services">

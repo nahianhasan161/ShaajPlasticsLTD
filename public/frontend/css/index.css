@@ -51,9 +51,9 @@ li{
   top: 50%;
   left: 50%;
   margin-right: -50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   padding: 50px 28px;
-  border: 2px solid transparent; 
+  border: 2px solid transparent;
   border-radius: 50%;
   transition: all .3s ease-in-out;
   animation: loader 1s infinite;
@@ -92,7 +92,7 @@ header .subheader{
   z-index: 1231;
   top: 0px;
   height: 48px;
-  
+
 }
 header .sub-item{
   display: flex;
@@ -145,11 +145,11 @@ header .sub-item p{
   color: var(--secondary);
   /* font-family: 'Roboto Slab', serif; */
   font-family: "Ashley Inline";
-  
+
 }
 .navbar-brand{
   display: none;
- 
+
 }
 /* title for small screen  */
 
@@ -166,7 +166,7 @@ header .sub-item p{
   width: 100% ;
   z-index: 12;
 }
-.navbar{ 
+.navbar{
   /* background-image: linear-gradient(to right,  #C9DFF6  , var(--primary) 85%); */
   background-color: transparent !important;
 }
@@ -214,7 +214,7 @@ header .sub-item p{
   background-color: var(--primary);
   color: white !important;
   border: 1px solid var(--primary);
-  
+
 }
 .headerflex ul li::after{
   content: '';
@@ -259,7 +259,7 @@ header .sub-item p{
   padding-left: 10px;
   padding-right: 18px;
   background: white;
-  
+
 }
 .searchIcon{
   color: white;
@@ -287,7 +287,7 @@ header .sub-item p{
 /* header udner photos start */
 
 .caurasel-main{
-  background-image: url(images/hanger1.jpg);
+  background-image: url('/Frontend/images/hanger1.jpg');
   background-repeat: no-repeat;
   background-size:cover;
   height: 100vh;
@@ -341,7 +341,7 @@ header .sub-item p{
   background:rgba( 0,0,0,0.6);
   height: 100%;
   position: relative;
-} 
+}
 
 .unic-border{
   width: 300px;
@@ -349,8 +349,8 @@ header .sub-item p{
   padding: 10px;
   background:#f1840875;
   position: absolute;
-  /* left: 50%; 
-  top: 50%; 
+  /* left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%); */
   top: 60px;
   left: 100px;
@@ -361,7 +361,7 @@ header .sub-item p{
   text-align: center;
   color: white;
   font-family: 'Oswald', sans-serif;
-  border-radius: 30px 0px 30px 0px; 
+  border-radius: 30px 0px 30px 0px;
   transition: all .8s ease;
 }
 
@@ -391,10 +391,10 @@ header .sub-item p{
 
 .unic-border:hover::after{
   height: 100%;
-  width: 100%; 
+  width: 100%;
 }
 
-.unic-border:hover::before{ 
+.unic-border:hover::before{
   height: 100%;
   width: 100%;
 }
@@ -428,7 +428,7 @@ header .sub-item p{
   padding: 14px;
   box-sizing: border-box;
   overflow:auto;
-  
+
 }
 .about-item{
   position: relative;
@@ -453,7 +453,7 @@ header .sub-item p{
   height: 30%;
   width: 30%;
   transition: all .5s ease;
-} 
+}
 
 
 .about-img-bord::after{
@@ -474,12 +474,12 @@ header .sub-item p{
 
 .about-img-bord:hover::after{
   height:99%;
-  width:98%; 
+  width:98%;
 }
 
 .about-img-bord:hover::before{
   height:99%;
-  width:98%; 
+  width:98%;
 }
 
 
@@ -490,9 +490,9 @@ header .sub-item p{
 /* client part */
 
 .client-logo{
-  display: flex; 
+  display: flex;
   overflow-x: auto;
-  
+
 }
 
 .client-logo img{
@@ -509,7 +509,7 @@ header .sub-item p{
 
 /* product start  */
 .product{
-  background:var(--gradient-color); 
+  background:var(--gradient-color);
   padding-bottom: 30px;
 }
 
@@ -548,7 +548,7 @@ header .sub-item p{
 .single-product img{
   width: 100%;
   height: 200px;
-  border-radius: 0px 10px 0px 0px; 
+  border-radius: 0px 10px 0px 0px;
   transition:all .2s ease-in-out;
 }
 .single-product img:hover{
@@ -660,11 +660,11 @@ header .sub-item p{
   font-weight: bold;
 }
 .fotter-content-one p{
-  color:rgba(216, 211, 211, 0.904);   
+  color:rgba(216, 211, 211, 0.904);
   transition: 0.4s;
   font-weight: 400;
   font-family:'oswald'
-  
+
 }
 
 
