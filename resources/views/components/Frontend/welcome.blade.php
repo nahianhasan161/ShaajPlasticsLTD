@@ -33,20 +33,23 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="{{asset('Frontend/images/caurasel1.jpg')}}" alt="First slide">
+          {{-- <img class="d-block w-100" src="{{asset('Frontend/images/caurasel1.jpg')}}" alt="First slide"> --}}
+          <img class="d-block w-100" src="{{asset('https://i.ibb.co/QKVQd0j/caurasel1.jpg')}}" alt="First slide">
           <p class="unic-border">
 
             Making your best <br> HANGER & SUPERIOR friendship with us
           </p>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{asset('Frontend/images/caurasel2.jpg')}}" alt="Second slide">
+          {{-- <img class="d-block w-100" src="{{asset('Frontend/images/caurasel2.jpg')}}" alt="Second slide"> --}}
+          <img class="d-block w-100" src="{{asset('https://i.ibb.co/9bTBsKs/caurasel2.jpg')}}" alt="Second slide">
           <p class="unic-border">
             Making your best <br> HANGER & SUPERIOR friendship with us
           </p>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{asset('Frontend/images/caurasel3.jpg')}}" alt="Third slide">
+          {{-- <img class="d-block w-100" src="{{asset('Frontend/images/caurasel3.jpg')}}" alt="Third slide"> --}}
+          <img class="d-block w-100" src="{{asset('https://i.ibb.co/NZQh3Hs/caurasel3.jpg')}}" alt="Third slide">
           <p class="unic-border m-auto">
             Making your best <br> HANGER & SUPERIOR friendship with us
           </p>
@@ -81,7 +84,7 @@
       </div>
       <div class="col-lg-6 col-12 about-item">
         <div class="about-single-item-wraper ">
-           <img src="{{asset('Frontend/images/flower.jpg')}}" alt="" class="border">
+           <img src="{{asset('https://i.ibb.co/JR768pj/flower.jpg')}}" alt="" class="border">
         </div>
 
       </div>
@@ -96,19 +99,19 @@
   <div class="client-item">
     <div class="client-logo">
        <div>
-         <img src="{{asset('Frontend/images/bata.jpg')}}" alt="">
+         <img src="{{asset('https://i.ibb.co/nnKDjYn/daraz.png')}}" alt="">
        </div>
        <div>
-         <img src="{{asset('Frontend/images/appex.jpg')}}" alt="">
+         <img src="{{asset('https://i.ibb.co/nnKDjYn/daraz.png')}}" alt="">
        </div>
        <div>
-         <img src="{{asset('Frontend/images/daraz.jpg')}}" alt="">
+         <img src="{{asset('https://i.ibb.co/nnKDjYn/daraz.png')}}" alt="">
        </div>
        <div>
-         <img src="{{asset('Frontend/images/evaly.jpg')}}" alt="">
+         <img src="{{asset('https://i.ibb.co/nnKDjYn/daraz.png')}}" alt="">
        </div>
        <div>
-         <img src="{{asset('Frontend/images/lira.jpg')}}" alt="">
+         <img src="{{asset('https://i.ibb.co/nnKDjYn/daraz.png')}}" alt="">
        </div>
     </div>
   </div>
@@ -126,31 +129,31 @@
 
   <div class="product-item container">
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product2.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product3.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product4.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product5.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product6.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
     <div class="single-product">
-      <img src="{{asset('Frontend/images/product.jpg')}}" alt="">
+      <img src="{{asset('https://i.ibb.co/Gkt0cVH/product2.jpg')}}" alt="">
       <p>Hook Top Hanger</p>
     </div>
 

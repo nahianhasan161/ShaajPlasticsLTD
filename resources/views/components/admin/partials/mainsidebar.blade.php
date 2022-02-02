@@ -107,17 +107,12 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>
             <p>
-                Inventory
+                Products
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{route('admin.inventory.row_meterial')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Row Metarial</p>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="{{route('admin.inventory.products')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -136,6 +131,33 @@
                 <p>All Plastic Product</p>
               </a>
             </li>
+
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+                Inventory
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('admin.inventory.row_meterial')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Row Metarial</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{{route('admin.inventory.product.category')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Product Category</p>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a href="{{route('admin.inventory.production')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>

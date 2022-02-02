@@ -36,14 +36,14 @@ class CreatePlasticProduct extends Component
 
 
     protected $rules = [
-        'request.name' => 'required',
+        'request.name' => 'required|max:15',
         'request.quantity' => 'required|numeric|min:1',
-        'request.meterial' => 'required',
-        'request.code' => 'required',
-        'request.color' => 'required',
+        'request.meterial' => 'required|max:15',
+        'request.code' => 'required|max:15',
+        'request.color' => 'required|max:15',
         'request.thickness' => 'required|numeric|min:1',
         'request.weight' => 'required|numeric|min:1',
-        'request.packaging' => 'required',
+        'request.packaging' => 'required|max:15',
         'request.stripes' => 'required|numeric|min:1',
         'request.price' => 'required|numeric|min:1',
         'request.category_id' => 'required',

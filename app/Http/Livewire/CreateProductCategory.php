@@ -112,8 +112,8 @@ class CreateProductCategory extends Component
             'request.image' => '', // 1MB Max
             ]
         );
-        /* $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
-
+        $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
+/*
         $Path =  $this->photo->store('uploads/category','public');
         $publicPath = 'storage/'. $Path;
 
