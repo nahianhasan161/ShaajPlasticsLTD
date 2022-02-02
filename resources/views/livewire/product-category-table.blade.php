@@ -48,7 +48,7 @@
              <td >
 
 
-                   <img  wire:click="showPhoto({{$product->id}})" role="button" class="img-thumbnail"  src="{{asset($product->image)}}"  alt="" srcset="">
+                   <img  wire:click="showPhoto({{$product->id}})" role="button" class="img-thumbnail"  src="{{asset($product->image) }} "  alt="" srcset="">
 
 
                </td>

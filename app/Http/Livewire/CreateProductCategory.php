@@ -14,6 +14,7 @@ class CreateProductCategory extends Component
     use WithFileUploads;
     protected $listeners = ['updateModal'];
      public $photo;
+     public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg';
      public $category;
     public $showEditModal = false;
     public $request = [
@@ -101,17 +102,17 @@ class CreateProductCategory extends Component
         $this->request['image'] = $this->photo ?? '';
         //dd($this->request['image']);
 
-        /*    $this->request['photo'] = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyXvzJib8clmr-0OhQgf-bd4CAyj_NUdWj3A&usqp=CAU'; */
+        $this->request['image'] = $this->tempImage;
         $validatedData = $this->validate([
 
             'request.name' => 'required|unique:categories,name',
 
             'request.slug' => '',
 
-            'request.image' => 'required|image|max:3024', // 1MB Max
+            'request.image' => '', // 1MB Max
             ]
         );
-        $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
+        /* $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
 
         $Path =  $this->photo->store('uploads/category','public');
         $publicPath = 'storage/'. $Path;
@@ -119,7 +120,7 @@ class CreateProductCategory extends Component
 
         $validatedData['request']['image'] = $publicPath;
         $image = Image::make(public_path($publicPath))->resize(500,300);
-        $image->save();
+        $image->save(); */
 
         //Storage::disk('public')->put('image.jpg',$this->photo);
        //$image =  Image::make($publicPath)->fit('1200','1200');

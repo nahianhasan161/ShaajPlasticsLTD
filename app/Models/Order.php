@@ -36,4 +36,8 @@ class Order extends Model
     {
         return $this->belongsTo(PlasticProduct::class);
     }
+    public function products()
+    {
+        return $this->hasMany(OrderProducts::class);
+    }
 }

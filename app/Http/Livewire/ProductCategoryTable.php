@@ -13,6 +13,7 @@ class ProductCategoryTable extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['deleteConfirmed','refresh' => '$refresh' ];
     public $bigPhoto;
+    public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg';
 
     public function updateProduct($id)
     {

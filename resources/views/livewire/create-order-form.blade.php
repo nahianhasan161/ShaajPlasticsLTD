@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     {{-- <div>
         <div class="container m-3" wire:click ="createModalButton">
             <button type="button" class="btn btn-primary" >
@@ -9,7 +9,7 @@
      <x-partials.modal> --}}
 
 
-        <div class="card container ">
+        <div class="card  ">
 
             <div class="card container mt-3">
 
@@ -146,9 +146,9 @@
                 {{-- @dump($products) --}}
                 <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
           <div class="col-sm-10">
-            <select id="productName" class="custom-select @error('product.product_id')
+            <select id="productName" class="custom-select @error('product.0.product_id')
             is-invalid
-            @enderror"  wire:model="product.product_id">
+            @enderror"  wire:model="product.0.product_id">
               <option value="">Please Select One</option>
             @foreach ($products as $id => $product)
 
@@ -161,7 +161,7 @@
 
 
 
-          @error('product.product_id')
+          @error('product.0.product_id')
 
           <div class="invalid-feedback">
               {{$message}}
@@ -174,9 +174,10 @@
                     <label for="quantity" class="col-sm-2 col-form-label">Product Quantity</label>
               <div class="col-sm-10">
 
-              <input type="number" class="form-control @error('product.quantity') is-invalid @enderror" placeholder="Row Metarial quantity" id="quantity" wire:model="product.quantity">
+              <input type="number" class="form-control @error('product.0.quantity') is-invalid @enderror" placeholder="Row Metarial quantity" id="quantity" wire:model="product.0.quantity">
 
-              @error('product.quantity')
+
+              @error('product.0.quantity')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -191,9 +192,9 @@
 
               <label for="productionPrice" class="col-sm-2 col-form-label">Costing Price</label>
               <div class="col-sm-10">
-              <input type="number" readonly class="form-control @error('productionPriceTotal') is-invalid @enderror  "  name="productionPrice" id="productionPrice" wire:model="productionPriceTotal">
+              <input type="number" readonly class="form-control @error('partial.0.productionPriceTotal') is-invalid @enderror  "  name="productionPrice" id="productionPrice" wire:model="partial.0.productionPriceTotal">
 
-              @error('productionPriceTotal')
+              @error('partial.0.productionPriceTotal')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -207,9 +208,9 @@
 
             <label for="productionType" class="col-sm-2 col-form-label">Price Type</label>
             <div class="col-sm-10">
-              <select class="custom-select @error('productionType')
+              <select class="custom-select @error('partial.0.productionType')
               is-invalid
-              @enderror"  wire:model="productionType">
+              @enderror"  wire:model="partial.0.productionType">
                 <option value="">Please Select One</option>
 
 
@@ -220,7 +221,7 @@
 
               </select>
 
-            @error('productionType')
+            @error('partial.0.productionType')
 
             <div class="invalid-feedback">
                 {{$message}}
@@ -234,9 +235,9 @@
 
               <label for="productionPrice" class="col-sm-2 col-form-label">Price by Type</label>
               <div class="col-sm-10">
-              <input type="text" disabled class="form-control @error('product.productionPrice') is-invalid @enderror  " placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice" wire:model="product.productionPrice">
+              <input type="text" disabled class="form-control @error('product.0.productionPrice') is-invalid @enderror  " placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice" wire:model="product.0.productionPrice">
 
-              @error('product.productionPrice')
+              @error('product.0.productionPrice')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -252,9 +253,9 @@
 
             <label for="costType" class="col-sm-2 col-form-label">Price Type</label>
             <div class="col-sm-10">
-              <select class="custom-select @error('costType')
+              <select class="custom-select @error('product.0.costType')
               is-invalid
-              @enderror"  wire:model="costType">
+              @enderror"  wire:model="product.0.costType">
                 <option value="">Please Select One</option>
 
 
@@ -265,7 +266,7 @@
 
               </select>
 
-            @error('costType')
+            @error('product.0.costType')
 
             <div class="invalid-feedback">
                 {{$message}}
@@ -279,9 +280,9 @@
 
               <label for="price" class="col-sm-2 col-form-label">Per Price</label>
               <div class="col-sm-10">
-              <input type="text" class="form-control @error('product.costingPrice') is-invalid @enderror  " placeholder="Row Metarial Price" name="price" id="price" wire:model="product.costingPrice">
+              <input type="text" class="form-control @error('product.0.costingPrice') is-invalid @enderror  " placeholder="Row Metarial Price" name="price" id="price" wire:model="product.0.costingPrice">
 
-              @error('product.costingPrice')
+              @error('product.0.costingPrice')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -297,9 +298,9 @@
 
               <label for="pricePerPis" class="col-sm-2 col-form-label"> Per Pis</label>
               <div class="col-sm-10">
-              <input type="text" readonly class="form-control @error('pricePerPis') is-invalid @enderror  "  name="pricePerPis" id="pricePerPis" wire:model="pricePerPis">
+              <input type="text" readonly class="form-control @error('partial.0.pricePerPis') is-invalid @enderror  "  name="pricePerPis" id="pricePerPis" wire:model="partial.0.pricePerPis">
 
-              @error('pricePerPis')
+              @error('partial.0.pricePerPis')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -312,9 +313,9 @@
 
               <label for="totalPrice" class="col-sm-2 col-form-label">Total</label>
               <div class="col-sm-10">
-              <input type="text" readonly class="form-control @error('totalPrice') is-invalid @enderror  "  name="totalPrice" id="totalPrice" wire:model="totalPrice">
+              <input type="text" readonly class="form-control @error('partial.0.totalPrice') is-invalid @enderror  "  name="totalPrice" id="totalPrice" wire:model="partial.0.totalPrice">
 
-              @error('totalPrice')
+              @error('partial.0.totalPrice')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -325,6 +326,7 @@
 
 
 
+            <button type="button" class="btn btn-sm btn-primary" wire:click="calculate">calculate</button>
         </div>
 
 
@@ -333,10 +335,10 @@
 
 
 
+        <div class="  card-footer d-flex justify-content-between">
 
-        <div class="card-footer float-right">
-
-            <button type="Submit" class="btn btn-xl btn-primary">Create Order</button>
+            <button type="Submit" class=" btn btn-sm btn-danger">Add Product</button>
+            <button type="Submit" class=" btn btn-lg btn-primary">Create Order</button>
         </div>
     </form>
 </div>

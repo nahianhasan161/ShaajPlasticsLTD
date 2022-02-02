@@ -17,7 +17,7 @@ class CreatePlasticProduct extends Component
      public $photo;
      public $product;
     public $showEditModal = false;
-
+    public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg';
     public $request = [
         'name' => '',
         'quantity' => '',
@@ -48,7 +48,7 @@ class CreatePlasticProduct extends Component
         'request.price' => 'required|numeric|min:1',
         'request.category_id' => 'required',
         /* 'request.photo' => '', */
-         'request.image' => 'required|image|max:1024', // 1MB Max
+         'request.image' => '', // 1MB Max
     ];
     public function createModalButton()
     {
@@ -116,16 +116,17 @@ class CreatePlasticProduct extends Component
     {
 
      /*    $this->request['photo'] = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyXvzJib8clmr-0OhQgf-bd4CAyj_NUdWj3A&usqp=CAU'; */
-     $this->request['image'] = $this->photo ;
+     $this->request['image'] = $this->tempImage;
+     /* $this->request['image'] = $this->photo ; */
        $validatedData = $this->validate();
-        $Path =  $this->photo->store('uploads/products','public');
-        $publicPath = 'storage/'. $Path;
+      /*   $Path =  $this->photo->store('uploads/products','public');
+        $publicPath = 'storage/'. $Path; */
 
 
-        $validatedData['request']['image'] = $publicPath;
+        /* $validatedData['request']['image'] = $publicPath;
 
         $image = Image::make(public_path($publicPath))->resize(500,300);
-        $image->save();
+        $image->save(); */
 
         //dd($this->request);
         PlasticProduct::create($validatedData['request']);

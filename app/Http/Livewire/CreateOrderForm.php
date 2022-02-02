@@ -6,20 +6,29 @@ use App\Models\Company;
 use App\Models\Order;
 use App\Models\PlasticProduct;
 use App\Models\Via;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateOrderForm extends Component
 {
 
     public $selectedProduct ;
+    public $maxQuantity;
 
-    public $productionPriceTotal = '0';
-    public $productionPrice = '0';
-    public $productionType = '';
-    public $pricePerPis = '0';
-    public $totalPrice = '0';
-    public $costType = '';
 
+
+
+
+    /* public $costType = ''; */
+    public $partial = [
+        [
+            'pricePerPis' => 0,
+            'totalPrice' => 0,
+            'productionType' => '',
+            'productionPriceTotal' => 0,
+            /* 'productionPrice' => 0, */
+        ]
+    ];
     public $request = [
 
 
@@ -33,108 +42,110 @@ class CreateOrderForm extends Component
 
     ];
     public $product = [
+        ['costType' => '',
         'product_id' => '',
         'quantity' => '',
         'productionPrice' => '',
-        'costingPrice' => '',
+        'costingPrice' => '',]
 
     ];
     protected $rules = [
-        /* 'product.product_id' => 'required',
-        'product.quantity' => 'required|numeric|min:1',
-        'product.costingPrice' => 'required|numeric|min:1',
-        'productionPrice' => 'required', */
+
 
         'request.rate' => 'required|numeric|min:1',
         'request.note' => 'required',
         'request.company_id' => 'required',
         'request.via_id' => 'required',
+        'request.type' => 'required',
+        'product.0.costType' => 'required',
+        'product.0.product_id' => 'required',
+
+        'product.0.productionPrice' => '',
+        'product.0.costingPrice' => 'required',
+
 
 
     ];
-     public function updatedProductProductId($id)
+
+    /* private function validatePartial ()
     {
+      $validatedData =   $this->validate([
+        'partial.pricePerPis' => '',
+        'partial.totalPrice' => '',
+        'partial.productionType' => '',
+        'partial.productionPriceTotal' => '',
 
-       $this->selectedProduct = $this->products->find($id);
-
-       if($this->selectedProduct ){
-           $this->product['productionPrice'] = $this->selectedProduct->price;
-           $quantity = $this->selectedProduct->quantity ;
-           $this->productionPriceTotal = intval($this->selectedProduct->price) * intval($this->product['quantity']) ;
-
-       } else{
-        $quantity = 0;
-        $this->product['productionPrice'] = 0;
-        $this->productionPriceTotal = 0;
-       }
-
-
-       $validatedData =  $this->validate([
-            'request.product_id' => 'required',
-        'request.quantity' => 'required|numeric|min:1|max:'.$quantity,
         ]);
+        return $validatedData['partial'];
+    } */
+    private function validateProduct ()
+    {
+        $this->selectedProduct = $this->products->find($this->product['0']['product_id']);
+        if($this->selectedProduct ){
+            $this->product['0']['productionPrice'] = $this->selectedProduct->price;
+            $quantity = $this->selectedProduct->quantity ;
+        }else{
+            $quantity = 0;
+        }
+        /* dd($quantity); */
+      $validatedData =   $this->validate([
+        'product.0.costType' => 'required',
+        'product.0.product_id' => 'required',
+        'product.0.quantity' => 'required|numeric|max:'.$quantity,
+        'product.0.productionPrice' => '',
+        'product.0.costingPrice' => 'required',
 
-
-        $this->productionPriceTotal = $this->selectedProduct ? intval($this->selectedProduct->price) * intval($this->product['quantity']) : 0;
-
-
+        ]);
+        return $validatedData['product'];
     }
-    public function updatedProductQuantity($inputQuantity)
+    public function calculate()
     {
 
-        $selectedProductQuantity = $this->selectedProduct ?  $this->selectedProduct->quantity : 0;
+       $this->validateProduct();
+       $this->CostingCalc();
+       $this->productionCalc();
+    }
+
+
+    public function productionCalc()
+    {
+        /* $selectedProductQuantity = $this->selectedProduct ?  $this->selectedProduct->quantity : 0;
         $price =  $this->selectedProduct ? $this->selectedProduct->price     : 0;
         //! Production Price Calculation
-        $this->productionPriceTotal = intval($price) * intval($inputQuantity ? $inputQuantity : 0) ;
+        $this->partial['0']['productionPriceTotal'] = intval($price) * intval($this->product['0']['quantity'] ? $this->product['0']['quantity'] : 0) ;
 
+        */
+        $this->selectedProduct = $this->products->find($this->product['0']['product_id']);
+        if($this->selectedProduct ){
+            $this->product['0']['productionPrice'] = $this->selectedProduct->price;
 
+            $this->partial['0']['productionPriceTotal'] = intval($this->selectedProduct->price) * intval($this->product['0']['quantity']) ;
 
-        //!End Production Price Calculation
-        //!Costing Price Calculation
-         $this->CostingCalc();
-        //!End Costing Price Calculation
-        $validatedData = $this->validate([
-            'request.company_id' => 'required',
-            'request.quantity' => 'required|numeric|min:1|max:'.$selectedProductQuantity,
+        } else{
 
-        ]);
-
-
-
-
-
+         $this->product['0']['productionPrice'] = 0;
+         $this->partial['0']['productionPriceTotal'] = 0;
+        }
     }
     private function CostingCalc()
     {
-        if(intval($this->product['quantity']) == 0 || intval($this->product['quantity']) == 0 || intval($this->costType) == 0){
+        if(intval($this->product['0']['quantity']) == 0 || intval($this->product['0']['quantity']) == 0 || intval($this->product['0']['costType']) == 0){
 
-            $this->pricePerPis = 0;
-            $this->totalPrice = 0;
+            $this->partial['0']['pricePerPis'] = 0;
+            $this->partial['0']['totalPrice'] = 0;
         }else{
-        $this->pricePerPis =  intval($this->product['costingPrice']) / intval($this->costType) ;
+        $this->partial['0']['pricePerPis'] =  intval($this->product['0']['costingPrice']) / intval($this->product['0']['costType']) ;
 
-        $this->totalPrice =  intval($this->product['quantity']) * intval($this->pricePerPis) ;
+        $this->partial['0']['totalPrice'] =  intval($this->product['0']['quantity']) * intval($this->partial['0']['pricePerPis']) ;
         }
     }
-    public function updatedCostType()
-    {
-        $this->CostingCalc();
-    }
-    public function updatedProductCostingPrice()
-    {
-        $this->CostingCalc();
 
-    }
 
-    public function updatedProductionType($pack)
-    {
-        $price = $this->selectedProduct ? $this->selectedProduct->price : 0;
-        $this->product['productionPrice'] = $pack ? intval($price) * intval($pack) : '0';
 
-    }
 
     private function validateRequest ()
     {
+
       $validatedData =   $this->validate([
             'request.rate' => 'required',
             'request.note' => 'required',
@@ -143,8 +154,9 @@ class CreateOrderForm extends Component
             'request.company_id' => 'required',
             'request.via_id' => 'required',
         ]);
-        return $validatedData['request'];
+        return $validatedData['product'];
     }
+
 
     public function createModalButton()
     {
@@ -152,12 +164,28 @@ class CreateOrderForm extends Component
     }
     public function createOrder()
     {
+        $this->selectedProduct = $this->products->find($this->product['0']['product_id']);
+        $quantity =$this->selectedProduct? $this->selectedProduct->quantity : 0;
+        $this->rules +=[ 'product.0.quantity' => 'required|numeric|min:1|max:'.$quantity];
+       $validatedData = $this->validate();
+       /*  $validatedData = $this->validateRequest(); */
 
-        $validatedData = $this->validateRequest();
-        /* dd($validatedData); */
-        Order::create(
-            $this->request
-        );
+     /*   dd($validatedData['product'][0]['quantity']); */
+
+  /*   $status = DB::transaction(function ($validatedData)  { */
+
+         $order = Order::create(
+             $validatedData['request']
+            );
+            $order->products()->create([
+                'quantity' => $validatedData['product'][0]['quantity'],
+                'productionPrice' => $validatedData['product'][0]['productionPrice'],
+                'costingPrice' => $validatedData['product'][0]['costingPrice'],
+                'product_id' => $validatedData['product'][0]['product_id'],
+
+            ]);
+       /*  }); */
+
         /* dd($this->request); */
         $this->reset();
         /* $this->emit('showModal'); */
