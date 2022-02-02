@@ -55,7 +55,7 @@
 
 
                     </td>
-                    <td>{{$order->quantity}}</td>
+                    <td>{{$order->product->quantity ?? 'null' }}</td>
                     <td>{{$order->type}}</td>
                     <td>{{$order->rate}}</td>
                     <td>Approved</td>
@@ -65,19 +65,21 @@
                     <strong>Total : </strong>{{$order->price * $order->quantity}}
                     </td>
                     <td>
+                        {{-- {{$order->products->find('quantity')}} --}}
+                       {{--  <strong>production Price:</strong>{{$order->products->costingPrice}}<br> --}}
+                        {{-- <strong>costing Price:</strong>{{$order->products->productionPrice}}<br> --}}
+                        <strong>costing Type:</strong>Pices<br>
 
-
-
-<strong>Name:</strong>{{$order->product->name}}<br>
-<strong>Material:</strong>{{$order->product->meterial}}<br>
-<strong>Code:</strong>{{$order->product->code}}<br>
-<strong>Quantity:</strong>{{$order->product->quantity}}<br>
-<strong>Weight:</strong>{{$order->product->weight}}<br>
-<strong>Stripes:</strong>{{$order->product->stripes}}<br>
-<strong>Thickness:</strong>{{$order->product->thickness}}<br>
-<strong>Packaging:</strong>{{$order->product->packaging}}<br>
-<strong>Color:</strong>{{$order->product->color}}<br>
-<strong>Price:</strong>{{$order->product->price}}<br>
+{{-- <strong>Name:</strong>{{$order->products->details->name}}<br>
+<strong>Material:</strong>{{$order->products->details->meterial}}<br>
+<strong>Code:</strong>{{$order->products->details->code}}<br>
+<strong>Quantity:</strong>{{$order->products->details->quantity}}<br>
+<strong>Weight:</strong>{{$order->products->details->weight}}<br>
+<strong>Stripes:</strong>{{$order->products->details->stripes}}<br>
+<strong>Thickness:</strong>{{$order->products->details->thickness}}<br>
+<strong>Packaging:</strong>{{$order->products->details->packaging}}<br>
+<strong>Color:</strong>{{$order->products->details->color}}<br>
+<strong>Price:</strong>{{$order->products->details->price}}<br> --}}
 
 
 

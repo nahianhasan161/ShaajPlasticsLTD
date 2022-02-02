@@ -18,4 +18,8 @@ class PlasticProduct extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function order()
+    {
+        return $this->belongsTo(OrderProducts::class,'id','product_id');
+    }
 }

@@ -15,7 +15,7 @@ class OrderTable extends Component
     public function getOrdersProperty()
     {
 
-        return Order::with('company','via','product')->paginate(2);
+        return Order::with('company','via','products')->paginate(2);
     }
     public function deleteConfirmed($id)
     {

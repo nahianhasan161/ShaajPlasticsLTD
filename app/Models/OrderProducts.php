@@ -14,4 +14,8 @@ class OrderProducts extends Model
 
         return $this->belongsTo(Order::class);
     }
+    public function details()
+    {
+        return $this->belongsTo(PlasticProduct::class,'product_id','id');
+    }
 }
