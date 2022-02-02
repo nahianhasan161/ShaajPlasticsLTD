@@ -25,6 +25,10 @@ class CreatePlasticProductsTable extends Migration
             $table->string('packaging');
             $table->string('color');
             $table->string('price');
+            $table->string('image');
+
+            $table->integer('category_id');
+            $table->index('category_id');
             $table->timestamps();
         });
     }

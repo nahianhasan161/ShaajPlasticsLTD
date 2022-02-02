@@ -1,19 +1,22 @@
 <div>
-    <div>
+    {{-- <div>
         <div class="container m-3" wire:click ="createModalButton">
             <button type="button" class="btn btn-primary" >
                 Create New Row Metarial
                </button>
 
         </div>
-     <x-partials.modal>
+     <x-partials.modal> --}}
 
 
+        <div class="card container ">
 
-        <form autocomplete="off"  wire:submit.prevent="{{ false ? 'updateOrder' : 'createOrder' }}">
-            @csrf
+            <div class="card container mt-3">
 
-            <h4>Company Details</h4>
+             <form autocomplete="off"  wire:submit.prevent="{{ false ? 'updateOrder' : 'createOrder' }}">
+                @csrf
+
+            <h2 class="text-center">Company Details</h2>
             <div class="form-row mx-3 my-2">
 
 
@@ -92,7 +95,7 @@
             <label for="rate" class="col-sm-2 col-form-label">Doller Rate</label>
             <div class="col-sm-10">
 
-              <input type="number" class="form-control @error('request.rate') is-invalid @enderror  " placeholder="Company Phone" name="rate" id="rate" wire:model.defer="request.rate">
+              <input type="number" class="form-control @error('request.rate') is-invalid @enderror  " placeholder="Doller Rate" name="rate" id="rate" wire:model.defer="request.rate">
 
               @error('request.rate')
 
@@ -131,20 +134,25 @@
             </div>
             </div>
 
-            <h4>Product Details</h4>
+            </div>
+
+            <div class="container card">
+
+
+            <h2 class="text-center">Product Details</h2>
 
             <div class="form-row mx-3 my-2">
 
+                {{-- @dump($products) --}}
                 <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
           <div class="col-sm-10">
-            <select id="productName" class="custom-select @error('productName')
+            <select id="productName" class="custom-select @error('product.product_id')
             is-invalid
-            @enderror"  wire:model="productName">
+            @enderror"  wire:model="product.product_id">
               <option value="">Please Select One</option>
+            @foreach ($products as $id => $product)
 
-            @foreach ($products as $product)
-
-            <option value="{{$product}}">{{$product}}</option>
+            <option value="{{$id}}">{{$product}}</option>
             @endforeach
 
 
@@ -153,7 +161,7 @@
 
 
 
-          @error('productName')
+          @error('product.product_id')
 
           <div class="invalid-feedback">
               {{$message}}
@@ -166,9 +174,9 @@
                     <label for="quantity" class="col-sm-2 col-form-label">Product Quantity</label>
               <div class="col-sm-10">
 
-              <input type="number" class="form-control @error('request.quantity') is-invalid @enderror" placeholder="Row Metarial quantity" id="quantity" wire:model="request.quantity">
+              <input type="number" class="form-control @error('product.quantity') is-invalid @enderror" placeholder="Row Metarial quantity" id="quantity" wire:model="product.quantity">
 
-              @error('request.quantity')
+              @error('product.quantity')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -177,15 +185,15 @@
           </div>
           </div>
 
-          <h5>Production Cost</h5>
+          <h3 class="text-center">Production Cost</h3>
             <div class="form-row mx-3 my-2">
 
 
-              <label for="productPrice" class="col-sm-2 col-form-label">Costing Price</label>
+              <label for="productionPrice" class="col-sm-2 col-form-label">Costing Price</label>
               <div class="col-sm-10">
-              <input type="number" readonly class="form-control @error('productPrice') is-invalid @enderror  " placeholder=" Production Price" name="productPrice" id="productPrice" wire:model="productPrice">
+              <input type="number" readonly class="form-control @error('productionPriceTotal') is-invalid @enderror  "  name="productionPrice" id="productionPrice" wire:model="productionPriceTotal">
 
-              @error('productPrice')
+              @error('productionPriceTotal')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -226,9 +234,9 @@
 
               <label for="productionPrice" class="col-sm-2 col-form-label">Price by Type</label>
               <div class="col-sm-10">
-              <input type="text" disabled class="form-control @error('productionPrice') is-invalid @enderror  " placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice" wire:model="productionPrice">
+              <input type="text" disabled class="form-control @error('product.productionPrice') is-invalid @enderror  " placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice" wire:model="product.productionPrice">
 
-              @error('productionPrice')
+              @error('product.productionPrice')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -237,7 +245,7 @@
             </div>
            </div>
 
-          <h4>Price Details</h4>
+          <h3 class="text-center">Price Details</h3>
 
           <div class="form-row mx-3 my-2">
 
@@ -271,9 +279,9 @@
 
               <label for="price" class="col-sm-2 col-form-label">Per Price</label>
               <div class="col-sm-10">
-              <input type="text" class="form-control @error('request.price') is-invalid @enderror  " placeholder="Row Metarial Price" name="price" id="price" wire:model.defer="request.price">
+              <input type="text" class="form-control @error('product.costingPrice') is-invalid @enderror  " placeholder="Row Metarial Price" name="price" id="price" wire:model="product.costingPrice">
 
-              @error('request.price')
+              @error('product.costingPrice')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -317,6 +325,7 @@
 
 
 
+        </div>
 
 
 
@@ -325,12 +334,12 @@
 
 
 
+        <div class="card-footer float-right">
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="Submit" class="btn btn-primary">Save changes</button>
+            <button type="Submit" class="btn btn-xl btn-primary">Create Order</button>
         </div>
     </form>
+</div>
 
 
 
@@ -339,9 +348,9 @@
 
 
 
-
+{{--
      </x-partials.modal>
     </div>
-
+ --}}
 
 </div>

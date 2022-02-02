@@ -16,20 +16,22 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('tracking_id');
-            $table->string('price');
-            $table->string('quantity');
+
+
+
             $table->string('type');
 
             $table->string('rate')->nullable();
             $table->string('note')->nullable();
 
-            $table->string('product_id');
-            $table->string('company_id');
-            $table->string('via_id');
+
+            $table->integer('company_id');
+            $table->integer('via_id');
 
             $table->index('via_id');
             $table->index('company_id');
-            $table->index('product_id');
+           /*  $table->integer('max_number')->default(1); */
+
 
             $table->timestamps();
         });

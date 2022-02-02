@@ -65,7 +65,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.order.all')}}" class="nav-link">
+                <a href="{{route('admin.order.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create New Order</p>
                 </a>
@@ -89,7 +89,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/charts/chartjs.html" class="nav-link">
+              <a href="{{route('admin.delivery.create')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Create New Delivery</p>
               </a>
@@ -122,6 +122,12 @@
               <a href="{{route('admin.inventory.products')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Produced Product</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('admin.inventory.product.category')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Product Category</p>
               </a>
             </li>
             <li class="nav-item">
@@ -200,10 +206,18 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/kanban.html" class="nav-link">
+          <a href="{{route('admin.request')}}" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>
             <p>
-              Kanban Board
+              Requests
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('admin.invoice')}}" class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Custom Invoice
             </p>
           </a>
         </li>

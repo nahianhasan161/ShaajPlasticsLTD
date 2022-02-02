@@ -10,95 +10,141 @@ use Livewire\Component;
 
 class CreateOrderForm extends Component
 {
-    public $productName = '';
+
     public $selectedProduct ;
-    public $selectedQuantity = 0 ;
-    public $productPrice = '0';
+
+    public $productionPriceTotal = '0';
     public $productionPrice = '0';
     public $productionType = '';
     public $pricePerPis = '0';
     public $totalPrice = '0';
     public $costType = '';
-    public $productQuantity = 0;
+
     public $request = [
 
-        'price' => '0',
-        'quantity' => '0',
-        'type' => '',
+
+
 
         'rate' => '',
         'note' => '',
         'company_id' => '',
         'via_id' => '',
+
+
+    ];
+    public $product = [
         'product_id' => '',
-        'tracking_id' => '11'
+        'quantity' => '',
+        'productionPrice' => '',
+        'costingPrice' => '',
+
     ];
     protected $rules = [
-        'request.price' => 'required|numeric|min:1',
-        'request.quantity' => 'required|numeric|min:1',
-        'request.type' => 'required',
+        /* 'product.product_id' => 'required',
+        'product.quantity' => 'required|numeric|min:1',
+        'product.costingPrice' => 'required|numeric|min:1',
+        'productionPrice' => 'required', */
+
         'request.rate' => 'required|numeric|min:1',
         'request.note' => 'required',
         'request.company_id' => 'required',
-         'request.product_id' => 'required',
         'request.via_id' => 'required',
-        'request.tracking_id' => 'required'
+
 
     ];
-     public function updatedProductName($name)
+     public function updatedProductProductId($id)
     {
-        $product = $this->products->where('name',$name)->first();
-        $this->selectedProduct = $product;
-        $this->request['product_id'] =  $product->id ?? ' ';
-        $quantity = $product ? $product->quantity : 0;
+
+       $this->selectedProduct = $this->products->find($id);
+
+       if($this->selectedProduct ){
+           $this->product['productionPrice'] = $this->selectedProduct->price;
+           $quantity = $this->selectedProduct->quantity ;
+           $this->productionPriceTotal = intval($this->selectedProduct->price) * intval($this->product['quantity']) ;
+
+       } else{
+        $quantity = 0;
+        $this->product['productionPrice'] = 0;
+        $this->productionPriceTotal = 0;
+       }
+
 
        $validatedData =  $this->validate([
-            'request.company_id' => 'required',
+            'request.product_id' => 'required',
         'request.quantity' => 'required|numeric|min:1|max:'.$quantity,
         ]);
 
-        $this->productQuantity = $quantity;
-        $this->productPrice = $product ? $product->price * $this->selectedQuantity : 0;
-        /* $this->request['price'] = $price; */
+
+        $this->productionPriceTotal = $this->selectedProduct ? intval($this->selectedProduct->price) * intval($this->product['quantity']) : 0;
+
 
     }
-    public function updatedRequestQuantity($selectedQuantity)
+    public function updatedProductQuantity($inputQuantity)
     {
 
-        $quantity = $this->selectedProduct ?  $this->selectedProduct->quantity : 0;
-        $qnt = $selectedQuantity ? $selectedQuantity : 0 ;
+        $selectedProductQuantity = $this->selectedProduct ?  $this->selectedProduct->quantity : 0;
         $price =  $this->selectedProduct ? $this->selectedProduct->price     : 0;
-        $this->productPrice = $price * $qnt ;
-        /* $this->productQuantity = $selectedQuantity; */
-        $this->selectedQuantity =  $selectedQuantity;
-        //dd($this->selectedProduct);
+        //! Production Price Calculation
+        $this->productionPriceTotal = intval($price) * intval($inputQuantity ? $inputQuantity : 0) ;
+
+
+
+        //!End Production Price Calculation
+        //!Costing Price Calculation
+         $this->CostingCalc();
+        //!End Costing Price Calculation
         $validatedData = $this->validate([
             'request.company_id' => 'required',
-            'request.quantity' => 'required|numeric|min:1|max:'.$quantity,
+            'request.quantity' => 'required|numeric|min:1|max:'.$selectedProductQuantity,
 
         ]);
 
 
-        /* $this->request['productPrice'] = $price; */
+
 
 
     }
-
-    public function updatedCostType($pack)
+    private function CostingCalc()
     {
+        if(intval($this->product['quantity']) == 0 || intval($this->product['quantity']) == 0 || intval($this->costType) == 0){
 
-        $this->pricePerPis = $pack ? $this->request['price'] / $pack : '0' ;
+            $this->pricePerPis = 0;
+            $this->totalPrice = 0;
+        }else{
+        $this->pricePerPis =  intval($this->product['costingPrice']) / intval($this->costType) ;
 
-        $this->totalPrice = $pack ? $this->selectedQuantity * $this->pricePerPis : '0';
+        $this->totalPrice =  intval($this->product['quantity']) * intval($this->pricePerPis) ;
+        }
+    }
+    public function updatedCostType()
+    {
+        $this->CostingCalc();
+    }
+    public function updatedProductCostingPrice()
+    {
+        $this->CostingCalc();
 
     }
+
     public function updatedProductionType($pack)
     {
         $price = $this->selectedProduct ? $this->selectedProduct->price : 0;
-        $this->productionPrice = $pack ? $price * $pack : '0';
+        $this->product['productionPrice'] = $pack ? intval($price) * intval($pack) : '0';
 
     }
 
+    private function validateRequest ()
+    {
+      $validatedData =   $this->validate([
+            'request.rate' => 'required',
+            'request.note' => 'required',
+            'request.type' => 'required',
+
+            'request.company_id' => 'required',
+            'request.via_id' => 'required',
+        ]);
+        return $validatedData['request'];
+    }
 
     public function createModalButton()
     {
@@ -107,12 +153,16 @@ class CreateOrderForm extends Component
     public function createOrder()
     {
 
-        $validatedData = $this->validate();
-        Order::create($validatedData['request']);
+        $validatedData = $this->validateRequest();
+        /* dd($validatedData); */
+        Order::create(
+            $this->request
+        );
+        /* dd($this->request); */
         $this->reset();
-        $this->emit('showModal');
+        /* $this->emit('showModal'); */
         $this->emit('alert',['icon' => 'success','title' => 'Order Has Been Created Successfully']);
-        $this->emit('refreshOrderTable');
+        /* $this->emit('refreshOrderTable'); */
     }
     public function getProductsProperty()
     {
@@ -128,7 +178,7 @@ class CreateOrderForm extends Component
     }
     public function render()
     {
-        $products = $this->products->pluck('name');
+        $products = $this->products->pluck('name','id');
 
         return view('livewire.create-order-form',['products' => $products,'companies' => $this->companies,'vias' => $this->vias]);
     }

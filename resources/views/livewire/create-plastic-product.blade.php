@@ -6,7 +6,7 @@
 
     </div>
  <x-partials.modal>
-
+    <div wire:loading.class="text-muted">
         <form autocomplete="off"  wire:submit.prevent="{{$showEditModal ? 'updateProduct' : 'createProduct' }}">
             @csrf
 
@@ -44,7 +44,34 @@
           </div>
           </div>
 
+          <div class="form-row mx-3 my-2">
 
+            <label for="category" class="col-sm-2 col-form-label">Category</label>
+      <div class="col-sm-10">
+        <select id="category" class="custom-select @error('request.category_id')
+        is-invalid
+        @enderror"  wire:model="request.category_id">
+          <option value="">Please Select One</option>
+
+        @foreach ($categories as $category)
+
+        <option value="{{$category->id}}">{{$category->name}}</option>
+        @endforeach
+
+
+
+        </select>
+
+
+
+      @error('request.category_id')
+
+      <div class="invalid-feedback">
+          {{$message}}
+      </div>
+      @enderror
+  </div>
+  </div>
 
           <div class="form-row mx-3 my-2">
 
@@ -170,28 +197,38 @@
             </div>
             </div>
 
-           {{--  @if ($photo)
-            Photo Preview:
-            <img src="{{ $photo->temporaryUrl() }}" class="img-thumbnail" >
-        @endif
-            <input type="file" wire:model="photo">
+            <div class="form-row mx-3 my-2">
 
-            @error('photo') <span class="error">{{ $message }}</span> @enderror
+                <label for="image" class="col-sm-2 col-form-label">image</label>
+                <div class="col-sm-10">
 
+                  <input type="file" class=" @error('request.image') is-invalid @enderror  "   id="image" wire:model.defer="photo">
 
+                  @error('request.image')
 
-
- --}}
+                  <div class="invalid-feedback">
+                     {{$message}}
+                  </div>
+                  @enderror
+                </div>
+                <div wire:loading>
+                    Uploading ...
+                </div>
+                 @if ($photo)
+                Photo Preview:
+                <img src="{{ $photo->temporaryUrl() }}" class="img-thumbnail" >
+                 @endif
+                </div>
 
 
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="Submit" class="btn btn-primary">Save changes</button>
+            <button type="Submit" wire:loading.attr="disabled" class="btn btn-primary">Save changes</button>
         </div>
     </form>
 
-
+</div>
 
 
 

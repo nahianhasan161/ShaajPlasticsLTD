@@ -29,7 +29,7 @@
         <section class="content">
             <div class="container-fluid">
               <!-- Small boxes (Stat box) -->
-                @livewire('create-order-form')
+               {{--  @livewire('create-order-form',['modla' => 'App\\Models\\Delivery']) --}}
                 @livewire('order-table')
               <!-- /.row -->
               <!-- Main row -->

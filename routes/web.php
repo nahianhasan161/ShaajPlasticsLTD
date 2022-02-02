@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RowMetarialController;
 use App\Mail\OrderMail;
 use App\Models\RowMetarial;
@@ -21,9 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('components.Frontend.welcome');
 })->name('welcome');
-Route::get('/products', function () {
-    return view('components.Frontend.products');
-})->name('products');
+
+// !products
+Route::get('/products', [CategoryController::class,'show'])->name('products');
+Route::get('/products/{category:slug}', [CategoryController::class,'products']);
+// !productsENd
 Route::get('/services', function () {
     return view('components.Frontend.servies');
 })->name('services');
@@ -50,7 +53,7 @@ Route::get('send-mail', function () {
 
 
 
-    Mail::to('nahianhasan161@gmail.com')->send(new OrderMail());
+    Mail::to('nahianhasan121@gmail.com')->send(new OrderMail());
 
     dd("Email is Sent.");
 });
@@ -69,12 +72,27 @@ Route::group([
     Route::get('/dashboard', function () {
         return view('authenticated.admin.dashboard');
     })->name('dashboard');
+
+// !Partials sidebar
     Route::get('/company', function () {
         return view('authenticated.admin.company.company');
     })->name('company');
     Route::get('/via', function () {
         return view('authenticated.admin.company.via');
     })->name('via');
+    Route::get('/request', function () {
+        return view('authenticated.admin.company.request');
+    })->name('request');
+    Route::get('/invoice', function () {
+        return view('authenticated.admin.company.invoice');
+    })->name('invoice');
+    Route::get('/invoice/show', function () {
+        return view('authenticated.admin.company.invoice');
+    })->name('invoice.show');
+
+
+// !End Partial Sidebar
+
     Route::get('/users', function () {
         return view('authenticated.admin.manage_user.users');
     })->name('users');
@@ -86,6 +104,11 @@ Route::group([
         Route::get('production', function () {
             return view('authenticated.admin.inventory.production');
         })->name('production');
+
+        Route::get('product/category', function () {
+            return view('authenticated.admin.inventory.category');
+        })->name('product.category');
+
         Route::get('plastic-products', function () {
             return view('authenticated.admin.inventory.plastic_products');
         })->name('plastic.products');
@@ -97,13 +120,19 @@ Route::group([
 });
 
     Route::group(['prefix' => 'order','as' => 'order.'],function(){
+        Route::get('/create', function () {
+            return view('authenticated.admin.order.create');
+        })->name('create');
         Route::get('/all', function () {
             return view('authenticated.admin.order.orders');
         })->name('all');
     });
     Route::group(['prefix' => 'delivery','as' => 'delivery.'],function(){
+        Route::get('/create', function () {
+            return view('authenticated.admin.delivery.create');
+        })->name('create');
         Route::get('/all', function () {
-            return view('authenticated.admin.order.orders');
+            return view('authenticated.admin.delivery.deliveries');
         })->name('all');
     });
 

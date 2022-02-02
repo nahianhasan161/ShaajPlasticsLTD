@@ -10,6 +10,20 @@ class Order extends Model
     use HasFactory;
     protected $guarded = [];
 
+   public Static function boot()
+   {
+       parent::boot();
+       static::creating(function($model){
+           $prefix = 'SPL-';
+
+        $model->tracking_id = $prefix.'-'.str_pad($model->max('id')+1,5,0,STR_PAD_LEFT);
+
+       });
+   }
+    public function deliveries()
+    {
+        return $this->hasMany(Delivery::class);
+    }
     public function company()
     {
         return $this->belongsTo(Company::class);

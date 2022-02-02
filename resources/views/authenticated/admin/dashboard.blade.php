@@ -19,7 +19,7 @@
  <!-- Main Sidebar Container -->
 
  <x-admin.partials.mainsidebar>
- 
+
 
 
 </x-admin.partials.mainsidebar>
@@ -628,5 +628,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+@push('scripts')
+<script src="{{asset('adminlte/dist/js/pages/dashboard.js')}}"></script>
+@endpush
 </x-layout.admin>

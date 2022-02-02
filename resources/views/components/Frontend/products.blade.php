@@ -22,88 +22,28 @@
       <h4 class="py-4"> Our Products </h4>
     </div>
 
-
-  <div class="row">
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="HangerProducts/palstic-cloth.html">
-            <h4>Plastic Cloth Hanger</h4>
-            <img src="{{asset('frontend/images/plasticH.jpg')}}" alt="">
-          </a>
-       </div>
-    </div>
+@forelse ($categories->chunk(3) as $chunk)
+<div class="row">
+    @foreach ($chunk as $category)
 
     <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/bottom.html">
-            <h4>Bottom Hanger</h4>
-            <img src="{{asset('frontend/images/bottomH.jpg')}}" alt="">
-          </a>
-       </div>
+        <div class="hanger-col-wrap">
+            <a href="/products/{{$category->slug}}">
+                <h4>{{$category->name}}</h4>
+                <img src="{{asset($category->image)}}" alt="">
+            </a>
+        </div>
     </div>
+    @endforeach
+@empty
 
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/hangerHook.html">
-            <h4> Hanger Hooks</h4>
-            <img src="{{asset('frontend/images/HangerHook.jpg')}}" alt="">
-          </a>
-       </div>
-    </div>
+       <h1 class="text-center">
+        No Item Found
+       </h1>
 
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/homeTex.html">
-            <h4>Home & Text Hanger</h4>
-            <img src="{{asset('frontend/images/homeH.png')}}" alt="">
-          </a>
-       </div>
-    </div>
 
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/multipack.html">
-            <h4>Multi Pack Hangers</h4>
-            <img src="{{asset('frontend/images/multiH.png')}}" alt="">
-          </a>
-       </div>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/belt.html">
-            <h4>Belt Hangers</h4>
-            <img src="{{asset('frontend/images/belt.jpg')}}" alt="">
-          </a>
-       </div>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/frock.html">
-            <h4>Frock Hangers</h4>
-            <img src="{{asset('frontend/images/frock.jpg')}}" alt="">
-          </a>
-       </div>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/sizeHanger.html">
-            <h4> Hanger Sizer</h4>
-            <img src="{{asset('frontend/images/sizer.png')}}" alt="">
-          </a>
-       </div>
-    </div>
-
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
-       <div class="hanger-col-wrap">
-          <a href="./HangerProducts/clip.html">
-            <h4> Clip Hanger</h4>
-            <img src="{{asset('frontend/images/clip.jpg')}}" alt="">
-          </a>
-       </div>
-    </div>
+</div>
+@endforelse
 
 
   </div>
