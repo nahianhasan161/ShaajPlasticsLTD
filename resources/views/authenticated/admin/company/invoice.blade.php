@@ -31,10 +31,10 @@
 
                     <div class="row">
                       <div class="col-12">
-                        <div class="callout callout-info">
+                        {{-- <div class="callout callout-info">
                           <h5><i class="fas fa-info"></i> Note:</h5>
                           This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
-                        </div>
+                        </div> --}}
 
 
                         <!-- Main content -->
@@ -42,8 +42,13 @@
                           <!-- title row -->
                           <div class="row">
                             <div class="col-12">
+                                <h1 class="text-center">
+                                    {{-- <img src="{{asset('img/logo/logo-sm.png')}}" alt="AdminLTE Logo" class="" style="opacity: .8"> --}}
+                                    <img src="{{asset('https://i.ibb.co/1QhsfSY/logo1.png')}}" alt="AdminLTE Logo" class="" style="opacity: .8">
+                                    <span class="brand-text font-weight-bold text-primary" style="font-family: Xavier  ;  ">Shaaj Plastics LTD</span>
+                                </h1>
                               <h4>
-                                <i class="fas fa-globe"></i> AdminLTE, Inc.
+                                {{-- <i class="fas fa-globe"></i> AdminLTE, Inc. --}}
                                 <small class="float-right">Date: 2/10/2014</small>
                               </h4>
                             </div>
@@ -90,42 +95,29 @@
                               <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                  <th>Qty</th>
-                                  <th>Product</th>
-                                  <th>Serial #</th>
+                                  <th>item</th>
                                   <th>Description</th>
+                                  <th>Quantity</th>
+                                  <th>Rate</th>
                                   <th>Subtotal</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                   <td>1</td>
-                                  <td>Call of Duty</td>
-                                  <td>455-981-221</td>
-                                  <td>El snort testosterone trophy driving gloves handsome</td>
+                                  <td>Hanger Small size black color</td>
+                                  <td>21</td>
+                                  <td>12$/DZ</td>
                                   <td>$64.50</td>
                                 </tr>
                                 <tr>
-                                  <td>1</td>
-                                  <td>Need for Speed IV</td>
-                                  <td>247-925-726</td>
-                                  <td>Wes Anderson umami biodiesel</td>
+                                  <td>2</td>
+                                  <td>Hanger Big size</td>
+                                  <td>22</td>
+                                  <td>10$/DZ</td>
                                   <td>$50.00</td>
                                 </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td>Monsters DVD</td>
-                                  <td>735-845-642</td>
-                                  <td>Terry Richardson helvetica tousled street art master</td>
-                                  <td>$10.70</td>
-                                </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td>Grown Ups Blue Ray</td>
-                                  <td>422-568-642</td>
-                                  <td>Tousled lomo letterpress</td>
-                                  <td>$25.99</td>
-                                </tr>
+
                                 </tbody>
                               </table>
                             </div>
@@ -201,7 +193,7 @@
     </x-admin.partials.maincontent>
 
     <!-- /.content-wrapper -->
-    <x-admin.partials.footer>
+   {{--  <x-admin.partials.footer>
 
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
@@ -209,7 +201,7 @@
               <b>Version</b> 3.2.0-rc
             </div>
 
-    </x-admin.partials.footer>
+    </x-admin.partials.footer> --}}
 
 
       <!-- Control Sidebar -->
