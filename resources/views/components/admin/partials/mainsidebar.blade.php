@@ -125,6 +125,7 @@
                 <p>Product Category</p>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="{{route('admin.inventory.plastic.products')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -151,12 +152,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="{{route('admin.inventory.product.category')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Product Category</p>
-              </a>
-            </li>
+
 
             <li class="nav-item">
               <a href="{{route('admin.inventory.production')}}" class="nav-link">

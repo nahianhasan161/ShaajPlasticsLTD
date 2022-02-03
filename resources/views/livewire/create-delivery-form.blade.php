@@ -146,7 +146,7 @@
 
 <div class="card" wire:loading.class="text-muted" >
 
-@dump("deliveryProducts.".$index.".name")
+{{-- @dump("deliveryProducts.".$index.".name") --}}
   <div class="form-row mx-3 my-2" >
 
 

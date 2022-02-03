@@ -29,7 +29,9 @@
 
 
        @livewire('create-plastic-product')
-       @livewire('production')
+      {{--  @livewire('production')
+       @livewire('production-table') --}}
+
        @livewire('plastic-product-table')
 
         {{-- <h1 style="font-family: 'ashley-inline-regular', sans-serif;" class="d-flex justify-content-center">Shaaj Plastic LTD</h1> --}}

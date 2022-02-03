@@ -27,6 +27,7 @@
     <x-admin.partials.maincontent>
 
       @livewire('production')
+      @livewire('production-table')
 
       {{-- history --}}
 

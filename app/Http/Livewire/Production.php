@@ -71,7 +71,7 @@ class Production extends Component
             'name' => $validatedData['request']['materialName'],
             'quantity' =>  $validatedData['request']['materialQuantity'],
         ]);
-        RowMetarial::where('name',$validatedData['request']['materialName'])->first()->decrement('quantity',$validatedData['request']['materialQuantity']);
+        RowMetarial::where('name',$validatedData['request']['materialName'])->first()->decrement('quantity',intval($validatedData['request']['materialQuantity']));
         $this->reset();
         $this->emit('alert',['icon' => 'success','title' => 'created']);
         /* $this->validate(['request.materialQuantity' => 'required|numeric|max:'.$this->q]); */
