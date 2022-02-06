@@ -66,7 +66,38 @@ class CreateOrderForm extends Component
 
 
     ];
+    public function addProduct()
+    {
+        $this->product[] =   [
+            'costType' => '',
+        'product_id' => '',
+        'quantity' => '',
+        'productionPrice' => '',
+        'costingPrice' => '',];
+    }
+    public function updatedProduct($value,$nestedItem)
+    {
+        $split = explode('.',$nestedItem);
+        $index = $split['0'];
+        /* dd($nestedItem); */
+        $selectedProduct = $this->products->find($this->product[$index]['product_id']);
 
+        if($selectedProduct){
+            $this->product[$index]['productionPrice'] = $selectedProduct->price;
+            $quantity = $selectedProduct->quantity ;
+        }else{
+            $quantity = 0;
+        }
+        $this->validate( [
+            'product.'.$index.'.costType' => 'required',
+            'product.'.$index.'.product_id' => 'required',
+            'product.'.$index.'.quantity' => 'required|numeric|max:'.$quantity,
+            'product.'.$index.'.productionPrice' => '',
+            'product.'.$index.'.costingPrice' => 'required',
+
+        ]);
+
+    }
     /* private function validatePartial ()
     {
       $validatedData =   $this->validate([

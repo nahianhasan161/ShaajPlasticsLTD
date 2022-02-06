@@ -14,11 +14,18 @@ class CreateDeliveryForm extends Component
 
     ];
 
+    public function updatedDeliveryProducts($value,$nested)
+    {
+        $nestedData = explode(".", $nested);
+
+        dd($nestedData[0],$nestedData[1]);
+    }
 
     public function addProduct()
     {
         $this->deliveryProducts[] = ['name' => '', 'quantity' => '1'];
     }
+
     public $request = [
         'deliveryToName' => '',
         'deliveryToPhone' => '',

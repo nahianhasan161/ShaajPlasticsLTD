@@ -135,22 +135,32 @@
             </div>
 
             </div>
+            {{-- @dump(collect($product)->implode('product_id',',')) --}}
+            @php
+               $collection = collect($product);
+               $collect = $collection->implode('product_id',',');
 
+               $collected =explode(",",$collect)
+
+            @endphp
+            @forelse($product  as $index => $product )
             <div class="container card">
 
+                {{-- @dump(array_diff_key($collected, array_flip(['0']))) --}}
 
             <h2 class="text-center">Product Details</h2>
 
             <div class="form-row mx-3 my-2">
+               {{--  ->except([1]) --}}
+               {{-- collect($product)->implode('product_id',',') --}}
 
-                {{-- @dump($products) --}}
                 <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
           <div class="col-sm-10">
-            <select id="productName" class="custom-select @error('product.0.product_id')
+            <select id="productName" wire:key="{{$loop->index}}" class="custom-select @error('product.'.$index.'.product_id')
             is-invalid
-            @enderror"  wire:model="product.0.product_id">
+            @enderror"  wire:model="product.{{$index}}.product_id">
               <option value="">Please Select One</option>
-            @foreach ($products as $id => $product)
+            @foreach ($products->except(array_diff_key($collected, array_flip([$index]))) as $id => $product)
 
             <option value="{{$id}}">{{$product}}</option>
             @endforeach
@@ -161,7 +171,7 @@
 
 
 
-          @error('product.0.product_id')
+          @error('product.'.$index.'.product_id')
 
           <div class="invalid-feedback">
               {{$message}}
@@ -174,10 +184,13 @@
                     <label for="quantity" class="col-sm-2 col-form-label">Product Quantity</label>
               <div class="col-sm-10">
 
-              <input type="number" class="form-control @error('product.0.quantity') is-invalid @enderror" placeholder="Row Metarial quantity" id="quantity" wire:model="product.0.quantity">
+              <input type="number"
+               class="form-control @error('product.'.$index.'.quantity') is-invalid @enderror"
+                placeholder="Row Metarial quantity" id="quantity"
+                wire:key="{{$loop->index}}" wire:model="product.{{$index}}.quantity">
 
 
-              @error('product.0.quantity')
+              @error('product.'.$index.'.quantity')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -192,7 +205,10 @@
 
               <label for="productionPrice" class="col-sm-2 col-form-label">Costing Price</label>
               <div class="col-sm-10">
-              <input type="number" readonly class="form-control @error('partial.0.productionPriceTotal') is-invalid @enderror  "  name="productionPrice" id="productionPrice" wire:model="partial.0.productionPriceTotal">
+              <input type="number" readonly
+              class="form-control @error('partial.0.productionPriceTotal') is-invalid @enderror  "
+                name="productionPrice" id="productionPrice"
+                wire:key="{{$loop->index}}" wire:model="partial.0.productionPriceTotal">
 
               @error('partial.0.productionPriceTotal')
 
@@ -210,7 +226,8 @@
             <div class="col-sm-10">
               <select class="custom-select @error('partial.0.productionType')
               is-invalid
-              @enderror"  wire:model="partial.0.productionType">
+              @enderror"
+              wire:key="{{$loop->index}}" wire:model="partial.0.productionType">
                 <option value="">Please Select One</option>
 
 
@@ -235,7 +252,10 @@
 
               <label for="productionPrice" class="col-sm-2 col-form-label">Price by Type</label>
               <div class="col-sm-10">
-              <input type="text" disabled class="form-control @error('product.0.productionPrice') is-invalid @enderror  " placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice" wire:model="product.0.productionPrice">
+              <input type="text" disabled
+              class="form-control @error('product.0.productionPrice') is-invalid @enderror  "
+              placeholder="Row Metarial productionPrice" name="productionPrice" id="productionPrice"
+              wire:key="{{$loop->index}}" wire:model="product.0.productionPrice">
 
               @error('product.0.productionPrice')
 
@@ -255,7 +275,7 @@
             <div class="col-sm-10">
               <select class="custom-select @error('product.0.costType')
               is-invalid
-              @enderror"  wire:model="product.0.costType">
+              @enderror" wire:key="{{$loop->index}}" wire:model="product.0.costType">
                 <option value="">Please Select One</option>
 
 
@@ -280,7 +300,9 @@
 
               <label for="price" class="col-sm-2 col-form-label">Per Price</label>
               <div class="col-sm-10">
-              <input type="text" class="form-control @error('product.0.costingPrice') is-invalid @enderror  " placeholder="Row Metarial Price" name="price" id="price" wire:model="product.0.costingPrice">
+              <input type="text" class="form-control @error('product.0.costingPrice') is-invalid @enderror  "
+               placeholder="Row Metarial Price" name="price" id="price"
+               wire:key="{{$loop->index}}" wire:model="product.0.costingPrice">
 
               @error('product.0.costingPrice')
 
@@ -298,7 +320,9 @@
 
               <label for="pricePerPis" class="col-sm-2 col-form-label"> Per Pis</label>
               <div class="col-sm-10">
-              <input type="text" readonly class="form-control @error('partial.0.pricePerPis') is-invalid @enderror  "  name="pricePerPis" id="pricePerPis" wire:model="partial.0.pricePerPis">
+              <input type="text" readonly class="form-control @error('partial.0.pricePerPis') is-invalid @enderror  "
+                name="pricePerPis" id="pricePerPis"
+                wire:key="{{$loop->index}}"  wire:model="partial.0.pricePerPis">
 
               @error('partial.0.pricePerPis')
 
@@ -313,7 +337,9 @@
 
               <label for="totalPrice" class="col-sm-2 col-form-label">Total</label>
               <div class="col-sm-10">
-              <input type="text" readonly class="form-control @error('partial.0.totalPrice') is-invalid @enderror  "  name="totalPrice" id="totalPrice" wire:model="partial.0.totalPrice">
+              <input type="text" readonly class="form-control @error('partial.0.totalPrice') is-invalid @enderror  "
+               name="totalPrice" id="totalPrice"
+               wire:key="{{$loop->index}}" wire:model="partial.0.totalPrice">
 
               @error('partial.0.totalPrice')
 
@@ -326,18 +352,19 @@
 
 
 
-            <button type="button" class="btn btn-sm btn-primary" wire:click="calculate">calculate</button>
+            <button type="button" class="btn btn-sm btn-primary" wire:key="{{$loop->index}}" wire:click="calculate">calculate</button>
         </div>
 
 
 
-
-
+        @empty
+        NO Product
+        @endforelse
 
 
         <div class="  card-footer d-flex justify-content-between">
 
-            <button type="Submit" class=" btn btn-sm btn-danger">Add Product</button>
+            <button type="button" class=" btn btn-sm btn-danger" wire:click="addProduct">Add Product</button>
             <button type="Submit" class=" btn btn-lg btn-primary">Create Order</button>
         </div>
     </form>
