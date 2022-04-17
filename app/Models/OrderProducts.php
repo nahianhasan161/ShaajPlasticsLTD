@@ -18,4 +18,13 @@ class OrderProducts extends Model
     {
         return $this->belongsTo(PlasticProduct::class,'product_id','id');
     }
+    public function deliveryProducts()
+    {
+        return $this->hasMany(DeliveryProduct::class,'id','order_product_id');
+    }
+    public function billProducts()
+    {
+
+        return $this->hasMany(BillProducts::class,'id','order_product_id');
+    }
 }

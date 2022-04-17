@@ -23,6 +23,8 @@
                  {{$message}}
               </div>
               @enderror
+
+
             </div>
             </div>
 
@@ -70,6 +72,7 @@
           {{$message}}
       </div>
       @enderror
+      <small ><u> <a class="text-danger" href="{{route('admin.inventory.product.category')}}">Create New Category</a> </u></small>
   </div>
   </div>
 
@@ -203,7 +206,7 @@
                 <div class="col-sm-10">
 
                   <input type="file" class=" @error('request.image') is-invalid @enderror  "   id="image" wire:model.defer="photo">
-
+                  <small id="imageHelp" class="form-text text-muted">Size:500X300</small>
                   @error('request.image')
 
                   <div class="invalid-feedback">

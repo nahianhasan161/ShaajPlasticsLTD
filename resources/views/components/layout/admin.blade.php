@@ -13,6 +13,65 @@
             src: url({{asset('font/xavier_inline-webfont.woff2')}}) format('woff2'),
             url('{{asset('font/xavier_inline-webfont.woff')}}') format('woff');
         }
+        .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
         </style>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -37,6 +96,9 @@
 
   <!-- sweetalert -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- pickaday -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
 <!-- livewire -->
 @livewireStyles
@@ -84,6 +146,8 @@
 @if (isset($dashboard))
 {{-- <script src="{{asset('adminlte/dist/js/pages/dashboard.js')}}"></script> --}}
 @endif
+<!-- pickaday -->
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <!-- Livewire -->
 @livewireScripts
 

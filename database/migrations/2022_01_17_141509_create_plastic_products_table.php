@@ -18,7 +18,7 @@ class CreatePlasticProductsTable extends Migration
             $table->string('name');
             $table->string('meterial');
             $table->string('code');
-            $table->string('quantity');
+            $table->string('quantity')->default(0);
             $table->string('weight');
             $table->string('stripes');
             $table->string('thickness');
@@ -26,6 +26,7 @@ class CreatePlasticProductsTable extends Migration
             $table->string('color');
             $table->string('price');
             $table->string('image');
+            $table->integer('active')->default(0);
 
             $table->integer('category_id');
             $table->index('category_id');

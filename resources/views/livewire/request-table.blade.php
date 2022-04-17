@@ -1,5 +1,5 @@
-<div>
-    <div>
+
+
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">Client Request Table</h3>
@@ -35,7 +35,7 @@
                         <td>
 
 
-                            <strong>Address:</strong>
+                           {{--  <strong>Address:</strong> --}}
                             <Address>
                                 {{$request->email}}
                             </Address>
@@ -46,7 +46,7 @@
                         <td>
 
 
-                            <strong>Address:</strong>
+                          {{--   <strong>Address:</strong> --}}
                             <Address>
                                 {{$request->note ?? 'N/A'}}
                             </Address>
@@ -91,9 +91,7 @@
                   {{$requests->links()}}
               </div>
             </div>
-            <!-- /.card-body -->
-          </div>
-    </div>
 
-</div>
+          </div>
+
 

@@ -21,6 +21,7 @@ class CreateViasTable extends Migration
 
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -8,12 +8,16 @@ use Livewire\WithPagination;
 
 class RowMetarialTable extends Component
 {
+
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $modal = 'App\\Models\\RowMetarial';
+
+    public $factory ;
+    public $Modal = 'App\\Models\\RowMetarial';
 
     protected $listeners = ['deleteConfirmed' => 'deleteRowMeterial','refreshRowMeterial' => '$refresh'];
+
 
 
     public function deleteRowMeterial(RowMetarial $metarial)
@@ -23,7 +27,7 @@ class RowMetarialTable extends Component
     }
     public function getRowMetarialsProperty()
     {
-        return RowMetarial::paginate(5);
+        return $this->factory->rowmeterials()->paginate(5);
     }
     public function render()
     {

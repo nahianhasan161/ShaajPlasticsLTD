@@ -1,10 +1,16 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RowMetarialController;
+use App\Http\Controllers\ViaController;
+use App\Mail\ClientMail;
 use App\Mail\OrderMail;
+use App\Models\Request;
 use App\Models\RowMetarial;
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -18,38 +24,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// !FrontENd
-Route::get('/', function () {
-    return view('components.Frontend.welcome');
-})->name('welcome');
 
-// !products
-Route::get('/products', [CategoryController::class,'show'])->name('products');
-Route::get('/products/{category:slug}', [CategoryController::class,'products']);
-// !productsENd
-Route::get('/services', function () {
-    return view('components.Frontend.servies');
-})->name('services');
-
-Route::get('/about', function () {
-    return view('components.Frontend.about');
-})->name('about');
-
-Route::get('/contacts', function () {
-    return view('components.Frontend.contacts');
-})->name('contacts');
-
-Route::get('/user/login', function () {
-    return view('components.Frontend.login');
-})->name('user.login');
-
-// !FrontENd
 
 // !Mail Testing
-/* Route::get('/email', function () {
-    return new OrderMail();
+/*  Route::get('/email', function () {
+     $data = Request::all()->first();
+    return new ClientMail($data);
+
 }); */
-Route::get('send-mail', function () {
+/*  Route::get('/email/order', function () {
+    return new OrderMail(1,1);
+
+}); */
+ /* Route::get('send-mail', function () {
 
 
 
@@ -59,21 +46,26 @@ Route::get('send-mail', function () {
 });
 Route::get('/d6a498beb6922eb6d6e4575d97f5fdc2.html', function () {
     return view('welcome');
-});
+}); */
 // !Mail Testing
+// !test
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// !test
 
 // !Admin
 Route::group([
 'prefix' => 'admin','as' => 'admin.','middleware' => ['role:admin']
 ],function(){
-    Route::get('/dashboard', function () {
-        return view('authenticated.admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [CompanyController::class,'dashboard'])->name('dashboard');
 
 // !Partials sidebar
+    Route::get('/client', function () {
+        return view('authenticated.admin.company.client');
+    })->name('client');
+    Route::get('/client/{client}/view', [ViaController::class,'clientBills'])->name('client.view');
     Route::get('/company', function () {
         return view('authenticated.admin.company.company');
     })->name('company');
@@ -93,52 +85,39 @@ Route::group([
 
 // !End Partial Sidebar
 
+// !Website Content
+Route::group(['prefix' => 'website','as' => 'website.'],function(){
+
+    Route::get('/about', function () {
+        return view('authenticated.admin.website.about');
+    })->name('about');
+    Route::get('/footer', function () {
+        return view('authenticated.admin.website.footer');
+    })->name('footer');
+    Route::get('/images', function () {
+        return view('authenticated.admin.website.images');
+    })->name('image');
+});
+
+// !End Website Content
+
     Route::get('/users', function () {
         return view('authenticated.admin.manage_user.users');
     })->name('users');
-    Route::group(['prefix' => 'inventory','as' => 'inventory.'],function(){
 
-        Route::get('products', function () {
-            return view('authenticated.admin.inventory.products');
-        })->name('products');
-        Route::get('production', function () {
-            return view('authenticated.admin.inventory.production');
-        })->name('production');
-
-        Route::get('product/category', function () {
-            return view('authenticated.admin.inventory.category');
-        })->name('product.category');
-
-        Route::get('plastic-products', function () {
-            return view('authenticated.admin.inventory.plastic_products');
-        })->name('plastic.products');
-
-        Route::get('row-metarial', function () {
-            return view('authenticated.admin.inventory.row_metarial');
-        })->name('row_meterial');
-        Route::get('row-metarial/{id}', [RowMetarialController::class,'show']);
-});
-
-    Route::group(['prefix' => 'order','as' => 'order.'],function(){
-        Route::get('/create', function () {
-            return view('authenticated.admin.order.create');
-        })->name('create');
-        Route::get('/all', function () {
-            return view('authenticated.admin.order.orders');
-        })->name('all');
-    });
-    Route::group(['prefix' => 'delivery','as' => 'delivery.'],function(){
-        Route::get('/create', function () {
-            return view('authenticated.admin.delivery.create');
-        })->name('create');
-        Route::get('/all', function () {
-            return view('authenticated.admin.delivery.deliveries');
-        })->name('all');
-    });
+    require __DIR__.'/inventory.php';
+    require __DIR__.'/order.php';
+    require __DIR__.'/delivery.php';
+    require __DIR__.'/bill.php';
+    require __DIR__.'/account.php';
 
 });
+
 
 // !End Admin
 Route::get('/userset/{id}', [RowMetarialController::class, 'show']);
-Route::get('row-metarial/{{id}}', [RowMetarialController::class,'show']);
+Route::get('row-metarial/{id}', [RowMetarialController::class,'show']);
+
 require __DIR__.'/auth.php';
+require __DIR__.'/website.php';
+

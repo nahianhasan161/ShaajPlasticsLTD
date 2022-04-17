@@ -9,13 +9,24 @@ use Livewire\WithPagination;
 class OrderTable extends Component
 {
     use WithPagination;
-
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['refreshOrderTable' => '$refresh','deleteConfirmed'];
+
+    public $selectedOrder ;
+    public $date ;
+    public $account = [
+        'amount' => 0,
+        'type' => 'debit',
+
+        'note' => '',
+        'reason' => 'Debited Your Account From Order',
+
+
+    ];
     public function getOrdersProperty()
     {
 
-        return Order::with('company','via','products')->paginate(2);
+        return Order::with('company','products')->paginate(10);
     }
     public function deleteConfirmed($id)
     {
@@ -27,6 +38,27 @@ class OrderTable extends Component
         }else{
             $this->emit('alert',['icon' => 'error', 'title' => 'The Order   delete is Unsuccessfully']);
         }
+    }
+    public function payment($orderId)
+    {
+        $this->selectedOrder = Order::find($orderId);
+
+        $this->emit('showModal');
+
+    }
+    public function addMoney()
+    {
+       $validatedData = $this->validate([
+            'account.amount' => 'required|numeric|min:1',
+            'account.type' => 'required',
+            'account.reason' => 'required',
+            'account.note' => 'max:250',
+
+            'date' => 'required|date_format:d/m/Y',
+        ]);
+        $this->selectedOrder->increment('paid',$validatedData['account']['amount']);
+
+        dd($validatedData);
     }
     public function render()
     {

@@ -1,6 +1,6 @@
 <div>
     <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header">
             <div class="row d-flex justify-content-between">
 
                 <h3 class="card-title">Bordered Table</h3>
@@ -46,7 +46,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- /.card-header -->
         <div class="card-body">
           <table class="table table-bordered">
@@ -68,7 +68,7 @@
                 <td>{{$key+1}}</td>
                 <td >
                     {{$data->name}}
-                    {{-- <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyXvzJib8clmr-0OhQgf-bd4CAyj_NUdWj3A&usqp=CAU" class="rounded-circle" alt="" srcset=""> --}}
+
 
                 </td>
                 <td>
@@ -77,7 +77,8 @@
 
 
                     <div>
-                        <strong class="bold"  style="font-size: 2rem" > {{round($data->quantity / 25,2)}}   </strong>
+                        <strong class="bold"  style="font-size: 2rem" > {{kgTobagHelper($data->quantity)
+                            }}   </strong>
                         <span class="badge bg-danger">  Bag</span>
 
                     </div>
@@ -91,17 +92,17 @@
                 <td>
 
                     <div>
-                        <strong class="bold"  style="font-size: 2rem" > {{round($data->price ,2)}}  </strong>
+                        <strong class="bold"  style="font-size: 2rem" > {{priceHelper($data->price,$data->quantity) }}  </strong>
                     <span class="badge bg-danger">TK Per KG</span>
 
                 </div>
                 <div>
-                    <strong class="bold"  style="font-size: 2rem"> {{round($data->price * ($data->quantity / 25),2)}}  </strong>
+                    <strong class="bold"  style="font-size: 2rem"> {{priceHelper($data->price,$data->quantity) * 25 }} </strong>
                     <span class="badge bg-danger"> TK Per Bag</span>
 
                 </div>
                 <div>
-                    <strong class="bold" style="font-size: 2rem"> {{round($data->price * $data->quantity,2)}}  </strong>
+                    <strong class="bold" style="font-size: 2rem"> {{round($data->price ,2)}}  </strong>
                     <span class="badge bg-danger">TK Total</span>
 
                 </div>
@@ -111,6 +112,7 @@
                 <td>
                     <div class="custom-control d-flex">
 
+                    <a class="btn btn-warning m-1" wire:click="$emit('addMaterial',{{$data->id}})"> <i class=" fa fa-plus"></i> </a>
                     <a class="btn btn-warning m-1" href="/admin/inventory/row-metarial/{{$data->id}}"> <i class=" fa fa-eye"></i> </a>
                     <button class="btn btn-primary m-1" wire:click="$emit('showModal',{{$data->id}})"> <i class=" fa fa-edit"></i> </button>
                     <button class="btn btn-danger m-1" wire:click="$emit('deleteConfirmation',{{$data->id}})"> <i class=" fa fa-trash"></i> </button>

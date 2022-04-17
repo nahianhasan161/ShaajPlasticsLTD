@@ -16,8 +16,10 @@ class CreateRowMetarialsTable extends Migration
         Schema::create('row_metarials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('quantity');
-            $table->string('price');
+            $table->integer('quantity')->default(0);
+            $table->integer('price')->default(0);
+
+            $table->unsignedBigInteger('factory_id');
             $table->timestamps();
         });
     }

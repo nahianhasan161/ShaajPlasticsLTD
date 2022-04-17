@@ -1,6 +1,6 @@
 /*------- max width 991px start ---------*/
 
-@media only screen and (max-width:1140px){
+@media only screen and (max-width:1260px){
   .subheader{
     display: none;
   }
@@ -37,10 +37,22 @@
   .about-section{
     margin-top: -50px;
   }
+
+  label #bars{
+    top: 145px;
+  }
+
+  .plastic-product{
+    margin-top: -50px !important;
+  }
+ 
 }
 
 @media only screen and (max-width: 991px){
 
+  .footer-button-And-Social{
+    display: block;
+  }
   .caurasel-main{
     margin-top: -120px;
   }
@@ -100,6 +112,41 @@
   .about-section{
     margin-top: -130px;
   }
+
+.what-looking input{
+  width: 100%;
+}
+.what-looking textarea{
+  width: 100%;
+}
+.what-looking button{
+  width: 97%;
+}
+
+.request-button button{
+   font-size: 15px;
+   padding: 4px;
+}
+
+.product-details-wrapper img{
+  width: 100%;
+}
+
+label #bars{
+  display: block;
+  top: 60px ;
+  position: fixed;
+  background: white;
+  width: 100%;
+  color: black;
+  border-radius: 0px;
+  left: 0;
+}
+
+.plastic-product{
+  margin-top: -150px !important;
+}
+
 }
 /*------- max width 991px end ---------*/
 
@@ -123,6 +170,22 @@
   .img-plastic img{
     border-radius: 10px 10px 0px 0px;
   }
+
+.unic-border{
+  left: 50%; 
+  top: 40%; 
+  transform: translate(-50%, -50%);
+}
+  
+.contact-wrapper-form{
+  width: 100%;
+}
+
+.office-address-wrapper{
+  display: block;
+  margin-bottom: 30px;
+}
+
 }
 /*------- max width 780px end ---------*/
 
@@ -133,9 +196,12 @@
    .small-logo{
      height: 35px;
    }  
-
+   
    .title-wrapepr .title h2{
     font-size: 21px !important;
+  }
+  .unic-border{
+    width:340px;
   }
 }
 /*------- max width 520px end ---------*/
@@ -152,6 +218,12 @@
   .small-logo{
     height:25px;
   }  
+
+  .request-button button{
+    width: 50%;
+    padding: 2px 5px;
+    font-size: 13px;
+  }
 }
 /*------- max width 470px end ---------*/
 

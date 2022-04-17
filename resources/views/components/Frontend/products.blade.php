@@ -10,7 +10,7 @@
   @endpush
 
 
- <x-Frontend.partials.header></x-Frontend.partials.header>
+  <x-Frontend.partials.header :details="$details" :active="$active" ></x-Frontend.partials.header>
  <x-Frontend.partials.preloader></x-Frontend.partials.preloader>
 
 
@@ -26,7 +26,7 @@
 <div class="row">
     @foreach ($chunk as $category)
 
-    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col">
+    <div class="col-xl-4 col-lg-4 col-lg-4 col-md-6 col-12 hanger-col" data-aos="flip-left">
         <div class="hanger-col-wrap">
             <a href="/products/{{$category->slug}}">
                 <h4>{{$category->name}}</h4>
@@ -53,7 +53,7 @@
 </section>
 
 
-<x-Frontend.partials.footer></x-Frontend.partials.footer>
+<x-Frontend.partials.footer :categories=$categories :details=$details></x-Frontend.partials.footer>
 <!-- footer end -->
 
 </x-layout.master>

@@ -17,7 +17,9 @@ class CreateProductionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('quantity');
-            $table->string('parent_id')->nullable();
+
+            $table->unsignedBigInteger('factory_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
 
             $table->timestamps();
         });

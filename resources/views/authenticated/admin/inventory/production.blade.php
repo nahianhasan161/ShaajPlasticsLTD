@@ -1,6 +1,6 @@
 <x-layout.admin >
 
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body class="sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
       <!-- Preloader -->
@@ -17,7 +17,7 @@
 
      <!-- Main Sidebar Container -->
 
-     <x-admin.partials.mainsidebar>
+     <x-admin.partials.mainsidebar active='inventory'>
 
 
 
@@ -25,10 +25,10 @@
 
     <!-- Content Wrapper. Contains page content -->
     <x-admin.partials.maincontent>
-
-      @livewire('production')
+       {{--  <a class="btn btn-primary" href="route('factory_production_history', {{$factory->id}})"><i class="fa fa-trash"> History</button> --}}
+     {{--  @livewire('production') --}}
       {{-- @livewire('production-table') --}}
-
+@livewire('production', ['factory' => $factory])
       {{-- history --}}
 
     </x-admin.partials.maincontent>
@@ -36,7 +36,7 @@
     <!-- /.content-wrapper -->
     <x-admin.partials.footer>
 
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; 2022.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
               <b>Version</b> 3.2.0-rc

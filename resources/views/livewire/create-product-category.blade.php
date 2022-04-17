@@ -32,19 +32,22 @@
                 <div class="col-sm-10">
 
                   <input type="file" class=" @error('request.image') is-invalid @enderror  "   id="image" wire:model.defer="photo">
-
+                  <small id="imageHelpBlock" class="form-text text-muted">
+                    size:500X300
+                  </small>
                   @error('request.image')
 
                   <div class="invalid-feedback">
                      {{$message}}
                   </div>
                   @enderror
+
                   <div wire:loading wire:target="photo">Uploading...</div>
                 </div>
-                {{-- @if ($photo)
+                @if ($photo)
                 Photo Preview:
                 <img src="{{ $photo->temporaryUrl() }}" class="img-thumbnail" >
-                 @endif --}}
+                 @endif
                 </div>
 
 

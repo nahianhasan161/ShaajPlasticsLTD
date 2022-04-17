@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class mainsidebar extends Component
 {
+    public $active;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($active='dashboard')
     {
-        //
+        $this->active = $active;
     }
 
     /**

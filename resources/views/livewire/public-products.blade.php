@@ -1,72 +1,129 @@
-<div wire:loading.class="text-muted">
+<div>
+ <!------------Sidebar Start-------------->
+
+ <input type="checkbox" id="check">
+
+ <label for="check">
+      <i class="fas fa-bars" id="bars"></i>
+      <i class="fas fa-times " id="close"></i>
+ </label>
 
 
-    {{--  @dump($products) --}}
+  <div class="sidebar">
+      <h4>Our Product Range</h4>
+ <ul>
+
+   <div class="sidebar-search-bar collapse-li-first">
+     <input type="search" placeholder="Search Products" wire:model="searchTerm">
+     <i class="fa fa-search" wire:click="searchProduct()"></i>
+   </div>
+   @forelse ($categories as $category)
 
 
-    <div class="row">
-        @forelse ($products as $product)
-        <div class="col-lg-6 col-12">
-            <div class="plastic-wrapper">
-               <div class="plastic-item-wraper">
-                  <div class="img-plastic ">
-                    <img src="{{asset($product->image)}}" alt="">
-                  </div>
-                  <div class="table-div">
-                   <table class="table table-striped">
+    <li href="#PlasticHangerForCollapse{{$category->id}}" data-toggle="collapse" class="">
+      <a class="" >{{$category->name}} ({{$category->products->count()}})</a>
+      <i class="fa fa-angle-down m-2 px-2 angle-sidebar"></i>
+     </li>
+     <div id="PlasticHangerForCollapse{{$category->id}}" class="collapse collapse-item-sidebar">
+         @forelse ($category->products as $product)
+         <li><a href="/products/{{$category->slug}}">{{$product->name}}</a></li>
+         @empty
+         <li><a href="/products/{{$category->slug}}">No Item</a></li>
 
-                     <tbody class="">
-                       <tr>
-                         <td>Usage/Application</td>
-                         <td>{{$product->name}}</td>
-                       </tr>
-                       <tr>
-                         <td>Color </td>
-                         <td>{{$product->color}}</td>
-                       </tr>
-                       <tr>
-                         <td>Brand</td>
-                         <td>Shaaj Plastic Ind.</td>
-                       </tr>
-                       <tr>
-                         <td>Product Code</td>
-                         <td>{{$product->code}}</td>
-                       </tr>
-                       <tr>
-                         <td>Packaging Type</td>
-                         <td>{{$product->packaging}}</td>
-                       </tr>
-                       <tr>
-                         <td>Material</td>
-                         <td>{{$product->meterial}}</td>
-                       </tr>
-                       <tr>
-                           <td> <button class="btn btn-sm btn-warning"  wire:loading.attr="disabled" wire:click="showCallbackForm({{$product->id}}) " wire:target="showCallbackForm({{$product->id}})">Request Callback</button></td>
-                           <td>
-                            <button class="btn btn-sm btn-danger" wire:loading.attr="disabled" wire:click="showPriceForm({{$product->id}})"  wire:target="showPriceForm({{$product->id}})">Request Price</button>
-                           </td>
-                       </tr>
-                     </tbody>
+         @endforelse
 
-                   </table>
+     </div>
+     @empty
+     <h1> No Item Found</h1>
+ @endforelse
 
-                  </div>
 
-               </div>
+ </ul>
+  </div>
+
+
+
+
+  <!------------Sidebar End-------------->
+
+  <section class="plastic-product container">
+     <div class="plastic-product-wrapper">
+       <div class="all-title">
+         <h4 class="py-4 mt-5 text-center">{{$categoryName}}</h4>
+       </div>
+
+
+
+
+<div class="row">
+    @forelse($products as $product)
+    <div class="col-lg-6 col-md-6 col-12">
+      <div class="product-outer-wrapper">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-12">
+            <div class="product-details-wrapper">
+               <img src="{{asset($product->image)}}" alt="">
             </div>
-         </div>
+          </div>
 
+          <div class="col-lg-12 col-md-12 col-12">
+            <div class="product-details-wrapper">
+                <table class="table table-striped">
+                    <tbody class="">
+                        <tr>
+                            <td>Usage/Application</td>
+                            <td>{{$product->name}}</td>
+                          </tr>
+                          <tr>
+                            <td>Color </td>
+                            <td>{{$product->color}}</td>
+                          </tr>
+                          <tr>
+                            <td>Brand</td>
+                            <td>Shaaj Plastic Ind.</td>
+                          </tr>
+                          <tr>
+                            <td>Product Code</td>
+                            <td>{{$product->code}}</td>
+                          </tr>
+                          <tr>
+                            <td>Packaging Type</td>
+                            <td>{{$product->packaging}}</td>
+                          </tr>
+                          <tr>
+                            <td>Material</td>
+                            <td>{{$product->meterial}}</td>
+                          </tr>
+                      </tbody>
+                </table>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="request-button">
+            <button type="button"  wire:loading.attr="disabled"  wire:click="showPriceForm({{$product->id}})"  wire:target="showPriceForm({{$product->id}})"> <i class="fa fa-envelope m-2" > </i> Get Best Price</button>
+            <button type="button" wire:loading.attr="disabled" wire:click="showCallbackForm({{$product->id}}) " wire:target="showCallbackForm({{$product->id}})"> <i class="fa fa-phone m-2"></i> Request Callback</button>
+        </div>
+
+      </div>
+    </div>
     @empty
-      <h1 class="text-center">
+    <h1 class="text-center">
         No Item Found
     </h1>
+    @endforelse
 
-        @endforelse
+    </div>
 
 
 
 
-    </div>   <!--row div-->
+
+  </div> <!--main row-->
+
+
+
 
 
 
@@ -175,6 +232,19 @@
                 </div>
                 @enderror
             </div>
+            <div class="mb-3">
+
+                <label for="inputNote" class="form-label">Details</label>
+                <textarea id="inputNote" wire:model.defer="request.note" class="form-control @error('request.note')
+                is-invalid
+                @enderror"  placeholder="What Ever On Your Mind..."></textarea>
+                @error('request.note')
+
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
 
 
 
@@ -212,7 +282,7 @@
 
 
 </div>
-
+</div>
 
 @push('scripts')
 

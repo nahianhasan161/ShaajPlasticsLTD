@@ -11,9 +11,12 @@ class footer extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $categories;
+    public $details;
+    public function __construct($categories=[],$details=[])
     {
-        //
+        $this->categories = $categories;
+        $this->details = $details;
     }
 
     /**

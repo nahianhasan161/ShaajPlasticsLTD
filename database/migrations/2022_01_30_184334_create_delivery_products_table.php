@@ -15,9 +15,9 @@ class CreateDeliveryProductsTable extends Migration
     {
         Schema::create('delivery_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('quantity');
-            $table->integer('delivery_id');
+            $table->unsignedBigInteger('delivery_id');
+            $table->unsignedBigInteger('order_product_id');
             $table->timestamps();
         });
     }

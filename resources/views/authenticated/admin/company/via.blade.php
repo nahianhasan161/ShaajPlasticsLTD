@@ -1,6 +1,6 @@
 <x-layout.admin >
 
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body class="sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
       <!-- Preloader -->
@@ -18,7 +18,7 @@
 
      <!-- Main Sidebar Container -->
 
-     <x-admin.partials.mainsidebar>
+     <x-admin.partials.mainsidebar active='via'>
 
 
 
@@ -29,8 +29,8 @@
         <section class="content">
             <div class="container-fluid">
               <!-- Small boxes (Stat box) -->
-                @livewire('create-via-form')
-                @livewire('via-table')
+              @livewire('create-company-form',['Model' => 'App\\Models\\Via'])
+              @livewire('company-table',['Model' => 'App\\Models\\Via'])
               <!-- /.row -->
               <!-- Main row -->
 

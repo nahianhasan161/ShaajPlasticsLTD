@@ -10,7 +10,7 @@
     @endpush
 
 
-   <x-Frontend.partials.header></x-Frontend.partials.header>
+    <x-Frontend.partials.header :details="$details" :active="$active"></x-Frontend.partials.header>
    <x-Frontend.partials.preloader></x-Frontend.partials.preloader>
 
 

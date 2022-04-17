@@ -19,8 +19,8 @@ class CreateCompaniesTable extends Migration
             $table->string('phone');
             $table->string('address');
 
-
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +31,8 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('companies');
+
     }
 }

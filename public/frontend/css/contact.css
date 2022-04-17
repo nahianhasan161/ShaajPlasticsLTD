@@ -1,6 +1,6 @@
 .contact-wrapper input{
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -10,9 +10,12 @@
   
 }
 
+.contact-wrapper input:focus{
+  border: 1px solid #0878bd;
+}
 .contact-wrapper textarea{
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -21,6 +24,10 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   resize: none;
   height: 100px;
+}
+
+.contact-wrapper textarea:focus{
+  border: 1px solid #0878bd;
 }
 
 .contact-wrapper h2,h3{
@@ -62,4 +69,24 @@
 .mapsize{
   width: 100% !important;
   height: 500px;
+}
+.office-address-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.office-address-wrapper img{
+  border-radius: 10px;
+  width:270px;
+}
+
+.contact-form{
+  margin: 0 auto;
+  display: block;
+}
+
+.contact-wrapper-form{
+  width: 520px;
+  margin: 0 auto;
 }

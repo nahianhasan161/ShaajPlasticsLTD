@@ -36,7 +36,8 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
         <li class="nav-item ">
-            <a href="{{route('admin.dashboard')}}" class="nav-link active">
+
+            <a href="{{route('admin.dashboard')}}" class="nav-link @if($active=='dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -55,7 +56,7 @@
             </a>
           </li> --}}
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link @if($active=='order') active @endif">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Orders
@@ -80,7 +81,7 @@
             </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link @if($active=='delivery') active @endif">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
              Deliveries
@@ -94,17 +95,17 @@
                 <p>Create New Delivery</p>
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="{{route('admin.delivery.all')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>All Deliveries</p>
               </a>
-            </li>
+            </li> --}}
 
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link @if($active=='product') active @endif">
             <i class="nav-icon fas fa-tree"></i>
             <p>
                 Products
@@ -114,7 +115,7 @@
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <a href="{{route('admin.inventory.products')}}" class="nav-link">
+              <a href="{{route('admin.inventory.products')}}" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Produced Product</p>
               </a>
@@ -137,7 +138,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link @if($active=='inventory') active @endif">
             <i class="nav-icon fas fa-tree"></i>
             <p>
                 Inventory
@@ -146,25 +147,54 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('admin.inventory.row_meterial')}}" class="nav-link">
+              <a href="{{route('admin.inventory.factory')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Row Metarial</p>
+                <p>Factories</p>
               </a>
             </li>
 
 
 
-            <li class="nav-item">
+
+           {{--  <li class="nav-item">
               <a href="{{route('admin.inventory.production')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Production</p>
               </a>
-            </li>
+            </li> --}}
 
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link @if($active=='accounts') active @endif">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+                Accounts
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('admin.account.history')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>History</p>
+              </a>
+            </li>
+
+
+
+
+           {{--  <li class="nav-item">
+              <a href="{{route('admin.inventory.production')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Production</p>
+              </a>
+            </li> --}}
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link @if($active=='employees') active @endif">
             <i class="nav-icon fas fa-edit"></i>
             <p>
               Employees
@@ -188,7 +218,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link ">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Users
@@ -207,16 +237,62 @@
         </li>
         <li class="nav-header">PARTIALS</li>
         <li class="nav-item">
-          <a href="{{route('admin.company')}}" class="nav-link">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                  Website
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+
+
+
+              <li class="nav-item">
+                <a href="{{route('admin.website.image')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Images</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('admin.website.about')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>About</p>
+                </a>
+              </li>
+
+            {{--   <li class="nav-item">
+                <a href="{{route('admin.website.footer')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Footer</p>
+                </a>
+              </li> --}}
+
+            </ul>
+          </li>
+        <li class="nav-item">
+          <a href="{{route('admin.client')}}" class="nav-link @if($active=='client') active @endif">
             <i class="nav-icon far fa-calendar-alt"></i>
             <p>
-              Company
-              <span class="badge badge-info right">2</span>
+             Client
+             {{--  <span class="badge badge-info right">2</span> --}}
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('admin.via')}}" class="nav-link">
+          <a href="{{route('admin.company')}}" class="nav-link @if($active=='company') active @endif">
+            <i class="nav-icon far fa-calendar-alt"></i>
+            <p>
+              Company
+             {{--  <span class="badge badge-info right">2</span> --}}
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('admin.via')}}" class="nav-link @if($active=='via') active @endif">
             <i class="nav-icon far fa-image"></i>
             <p>
               VIA
@@ -224,20 +300,32 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('admin.request')}}" class="nav-link">
+          <a href="{{route('admin.request')}}" class="nav-link @if($active=='request') active @endif">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Requests
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="{{route('admin.invoice')}}" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>
             <p>
               Custom Invoice
             </p>
           </a>
+        </li> --}}
+        <li class="nav-item mb-5">
+            <form action="{{route('logout')}}" method="post"  id="logout">
+                @csrf
+          <a onclick="logout()"  href="#"  class="nav-link" >
+            <i class="nav-icon fa fa-sign-out"></i>
+            <p>
+              Logout
+            </p>
+          </a>
+        </form>
+
         </li>
 
 
@@ -248,3 +336,13 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+@push('scripts')
+<script>
+    function logout(){
+
+          document.getElementById("logout").submit();
+    }
+
+
+    </script>
+@endpush

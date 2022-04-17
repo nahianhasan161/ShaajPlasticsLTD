@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class CreateCompanyForm extends Component
 {
+    public $Model;
     public $request = [
         'name' => '',
         'phone' => '',
@@ -14,28 +15,33 @@ class CreateCompanyForm extends Component
     ];
     protected $rules = [
         'request.name' => 'required',
-        'request.phone' => 'required|digits:11',
+        'request.phone' => 'required|min:11|max:14',
         'request.address' => 'required'
     ];
     public function createModalButton()
     {
-        $this->reset();
+        $this->resetExcept('Model');
         $this->emit('showModal');
 
     }
     public function createVia()
     {
+
         $validatedData = $this->validate();
 
-        Company::create($validatedData['request']);
+        $this->Model::create($validatedData['request']);
         $this->reset();
         $this->emit('showModal');
         $this->emit('refresh');
         $this->emit('alert',['icon' => 'success','title' => 'Successfullty Created']);
     }
-
+    public function mount()
+    {
+        $this->Model;
+    }
     public function render()
     {
+       /*  dd($this->Model); */
         return view('livewire.create-company-form');
     }
 }

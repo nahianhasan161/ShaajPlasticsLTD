@@ -11,13 +11,14 @@ class CompanyTable extends Component
     use WithPagination;
     protected $paginationTheme= 'bootstrap';
     protected $listeners= ['refresh' => '$refresh','deleteConfirmed'];
+    public $Model;
     public function getCompaniesProperty()
     {
-        return Company::paginate();
+        return $this->Model::paginate();
     }
     public function deleteConfirmed($id)
     {
-        $product = Company::where('id',$id)->first();
+        $product = $this->Model::where('id',$id)->first();
         if($product){
 
             $product->delete();
@@ -28,6 +29,7 @@ class CompanyTable extends Component
     }
     public function render()
     {
+
         return view('livewire.company-table',['companies' => $this->companies]);
     }
 }

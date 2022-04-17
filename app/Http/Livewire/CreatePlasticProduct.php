@@ -15,6 +15,7 @@ class CreatePlasticProduct extends Component
     use WithFileUploads;
     protected $listeners = ['updateModal'];
      public $photo;
+
      public $product;
     public $showEditModal = false;
     public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg';
@@ -70,11 +71,11 @@ class CreatePlasticProduct extends Component
     {
         //dd(File::exists($this->request['image']));
 
-        $old = $this->request['image'];
-        $this->request['image'] = $this->photo ?? '';
-        $this->rules['request.image'] = 'image|max:3024';
-        $validatedData = $this->validate();
 
+        $this->request['image'] = $this->photo ?? '';
+        $this->rules['request.image'] = 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=500,height=300';
+        $validatedData = $this->validate();
+        $old = $this->product->image;
 
 
          if(empty($validatedData['request']['image'])){
@@ -88,18 +89,30 @@ class CreatePlasticProduct extends Component
 
 
 
+
         if( File::exists($old)){
+
             $s =  File::delete($old);
+        }   if($validatedData['request']['image']){
+
+            $extension = $validatedData['request']['image']->getClientOriginalExtension();
+            $fileName = 'plasticproduct'. time().'.'. $extension;
+
+            $Path =  $validatedData['request']['image']->storeAs('uploads/products',$fileName,'public');
+            if(env('APP_ENV') == 'production'){
+                $publicPath = publicPathHelper($Path) ;
+
+              }else{
+                $publicPath = 'storage/'. $Path;
+
+              }
+
         }
-
-            $Path =  $this->photo->store('uploads/products','public');
-            $publicPath = 'storage/'. $Path;
-
             if(File::exists($publicPath)){
 
                 $validatedData['request']['image'] = $publicPath;
-                $image = Image::make(public_path($publicPath))->resize(500,300);
-                $image->save();
+                $image = Image::make(public_path($publicPath))->fit(500,300);
+                $image->save($fileName,80,$extension);
 
             }
 
@@ -115,18 +128,29 @@ class CreatePlasticProduct extends Component
     public function createProduct()
     {
 
-     /*    $this->request['photo'] = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyXvzJib8clmr-0OhQgf-bd4CAyj_NUdWj3A&usqp=CAU'; */
-     $this->request['image'] = $this->tempImage;
-     /* $this->request['image'] = $this->photo ; */
+
+     $this->request['image'] = $this->photo ;
+     $this->rules['request.image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=500,height=300';
+
        $validatedData = $this->validate();
-      /*   $Path =  $this->photo->store('uploads/products','public');
-        $publicPath = 'storage/'. $Path; */
+
+                $extension = $validatedData['request']['image']->getClientOriginalExtension();
+                $fileName = 'plasticproduct'. time().'.'. $extension;
+
+       $Path =  $validatedData['request']['image']->storeAs('uploads/products',$fileName,'public');
+       if(env('APP_ENV') == 'production'){
+        $publicPath = publicPathHelper($Path) ;
+
+      }else{
+        $publicPath = 'storage/'. $Path;
+
+      }
 
 
-        /* $validatedData['request']['image'] = $publicPath;
+       $validatedData['request']['image'] = $publicPath;
 
-        $image = Image::make(public_path($publicPath))->resize(500,300);
-        $image->save(); */
+        $image = Image::make(public_path($publicPath))->fit(500,300);
+        $image->save($fileName,80,$extension);
 
         //dd($this->request);
         PlasticProduct::create($validatedData['request']);

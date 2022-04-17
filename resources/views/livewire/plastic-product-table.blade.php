@@ -42,6 +42,7 @@
               <th>Packaging Type</th>
               <th>Category</th>
               <th>Color</th>
+              <th>Active</th>
               <th style="width: 40px">Action</th>
             </tr>
           </thead>
@@ -176,10 +177,21 @@
 
               </td>
               <td>
+                <label class="switch">
+                    @if ($product->active == 0)
+                    <input type="checkbox" wire:click="isActive({{$product->id}})">
+                    @else
+
+                    <input type="checkbox" wire:click="isActive({{$product->id}})" checked>
+                    @endif
+                    <span class="slider round"></span>
+                  </label>
+              </td>
+              <td>
                   <div class="custom-control d-flex">
 
                   <a class="btn btn-warning m-1" {{-- href="/admin/inventory/row-metarial/{{$data->id}}" --}}> <i class=" fa fa-eye"></i> </a>
-                  <button class="btn btn-primary m-1" wire:click="updateProduct({{$product->id}})'"> <i class=" fa fa-edit"></i> </button>
+                  <button class="btn btn-primary m-1" wire:click="updateProduct({{$product->id}})"> <i class=" fa fa-edit"></i> </button>
                   <button class="btn btn-danger m-1"  wire:click="$emit('deleteConfirmation',{{$product->id}})" > <i class=" fa fa-trash"></i> </button>
 
               </div>

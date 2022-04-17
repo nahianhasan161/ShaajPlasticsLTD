@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('active')->nullable();
             $table->string('slug');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

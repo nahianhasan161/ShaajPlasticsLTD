@@ -1,0 +1,80 @@
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+/*----- common style for all start-----  */
+a{
+ text-decoration: none;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  list-style-type: none;
+}
+
+:root {
+  --primary: #006BAF;
+  --secondary: #2E3191;
+  --whitetype:#C9DFF6;
+  --gradient-color:linear-gradient(to right,  #C9DFF6  , var(--primary) 85%);
+}
+/*----- common style for all end-----  */
+
+.all-title h2{
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.signIn{
+  /* background-color: #CCCC; */
+  background: white;
+  padding: 50px 0px;
+}
+
+.sign-item h1{
+  font-family: "roboto";
+}
+.sign-item li{
+  margin-top: 15px;
+  font-size: 20px;
+  font-family: "oswald";
+}
+
+.sign-item img{
+  width: 80%;
+  height:250px;
+}
+
+.sign-item input{
+  outline: none;
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width:100%;
+  background: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.doneBtn{
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px 0px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #0e8ddb;
+  color: white;
+  font-size: 20px;
+  font-family: "oswald";
+  transition:all .2s ease-in-out;
+}
+
+.doneBtn:hover{
+  background-color:#0878bd;
+}

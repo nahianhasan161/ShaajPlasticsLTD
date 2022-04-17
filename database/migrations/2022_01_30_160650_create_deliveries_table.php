@@ -16,19 +16,28 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('tracking_id');
+            $table->string('tracking_id');
             $table->string('delivery_by_name');
             $table->string('delivery_by_phone');
+            $table->string('delivery_by_address');
+
             $table->string('delivery_to_name');
             $table->string('delivery_to_phone');
+            $table->string('delivery_to_address');
+
+            /* $table->integer('payable');
+            $table->integer('paid')->default(0); */
+
+            $table->string('status')->default('pending');
 
 
-            $table->string('note');
+            $table->longText('note')->nullable();
 
-            $table->integer('company_id');
 
-            $table->integer('order_id');
+
+            $table->unsignedBigInteger('order_id');
             $table->index('order_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

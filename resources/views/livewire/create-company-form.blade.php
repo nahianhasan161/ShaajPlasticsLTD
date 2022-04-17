@@ -33,7 +33,7 @@
                     <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
 
-                      <input type="number" class="form-control @error('request.phone') is-invalid @enderror  " placeholder="Company Phone" name="phone" id="phone" wire:model.defer="request.phone">
+                      <input type="tel" class="form-control @error('request.phone') is-invalid @enderror  " placeholder="Company Phone" name="phone" id="phone" wire:model.defer="request.phone">
 
                       @error('request.phone')
 

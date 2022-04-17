@@ -11,9 +11,14 @@ class header extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $details = '';
+    public $active = 'services';
+    public $term = '';
+    public function __construct($details= '',$active = '',$term = '')
     {
-        //
+    $this->details = $details;
+    $this->active = $active;
+    $this->term = $term;
     }
 
     /**

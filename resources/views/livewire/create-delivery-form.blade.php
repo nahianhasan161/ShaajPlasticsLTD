@@ -13,29 +13,30 @@
         <form autocomplete="off"  wire:submit.prevent="{{ false ? 'updateDelivery' : 'createDelivery' }}">
             @csrf
 
-      <h4>Company Details</h4>
+            <h4>Order Detials</h4>
+
             <div class="form-row mx-3 my-2">
 
 
-                <label for="company" class="col-sm-2 col-form-label">Select Company</label>
+                <label for="order" class="col-sm-2 col-form-label">Select Order</label>
                 <div class="col-sm-10">
-                  <select id="company" class="custom-select @error('request.company_id')
+                  <select id="order" class="custom-select @error('request.order_id')
                   is-invalid
-                  @enderror"  wire:model.defer="request.company_id">
+                  @enderror"  wire:model="request.order_id">
                     <option value="">Please Select One</option>
 
-                  {{--   @forelse ($companies as $company)
-                    <option value="{{$company->id}}">{{$company->name}}</option>
+                  @forelse ($orders as $order)
+                    <option value="{{$order->id}}">{{$order->tracking_id}}</option>
                     @empty
 
                     @endforelse
- --}}
+
 
 
 
                   </select>
 
-                @error('request.company_id')
+                @error('request.order_id')
 
                 <div class="invalid-feedback">
                     {{$message}}
@@ -43,6 +44,8 @@
                 @enderror
               </div>
             </div>
+
+
 
 
         <div class="form-row mx-3 my-2">
@@ -74,9 +77,9 @@
 
             <label for="request.Name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-            <input type="text"  class="form-control @error('request.Name') is-invalid @enderror  " placeholder="Row Metarial request.Name" name="request.Name" id="request.Name" wire:model="request.Name">
+            <input type="text"  class="form-control @error('request.delivery_by_name') is-invalid @enderror  " placeholder="Delivery Man Name" name="request.Name" id="request.Name" wire:model="request.delivery_by_name">
 
-            @error('request.deliveryByName')
+            @error('request.delivery_by_name')
 
             <div class="invalid-feedback">
                 {{$message}}
@@ -90,9 +93,9 @@
 
               <label for="productPrice" class="col-sm-2 col-form-label">Number</label>
               <div class="col-sm-10">
-              <input type="number" class="form-control @error('request.deliveryByNumber') is-invalid @enderror  " placeholder=" Production Price" name="request.deliveryByNumber" id="request.deliveryByNumber" wire:model="request.deliveryByNumber">
+              <input type="tel" class="form-control @error('request.delivery_by_phone') is-invalid @enderror  " placeholder=" Production Price" name="request.deliveryByPhone" id="request.deliveryByPhone" wire:model="request.delivery_by_phone">
 
-              @error('request.deliveryByNumber')
+              @error('request.delivery_by_phone')
 
               <div class="invalid-feedback">
                   {{$message}}
@@ -102,6 +105,20 @@
            </div>
 
 
+           <div class="form-row mx-3 my-2">
+            <label for="note" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+
+              <textarea type="text" class="form-control @error('request.delivery_by_address') is-invalid @enderror  " placeholder="Company Address" name="note" id="note" wire:model.defer="request.delivery_by_address"></textarea>
+
+              @error('request.delivery_by_address')
+
+              <div class="invalid-feedback">
+                 {{$message}}
+              </div>
+              @enderror
+            </div>
+            </div>
 
 
 
@@ -113,9 +130,9 @@
 
             <label for="request.deliveryByName" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-            <input type="text"  class="form-control @error('request.deliveryByName') is-invalid @enderror  " placeholder="Row Metarial request.deliveryByName" name="request.deliveryByName" id="request.deliveryByName" wire:model="request.deliveryByName">
+            <input type="text"  class="form-control @error('request.delivery_to_name') is-invalid @enderror  " placeholder="name" name="request.deliveryByName" id="request.deliveryByName" wire:model="request.delivery_to_name">
 
-            @error('request.deliveryByName')
+            @error('request.delivery_to_name')
 
             <div class="invalid-feedback">
                 {{$message}}
@@ -126,12 +143,12 @@
 
          <div class="form-row mx-3 my-2">
 
-            <label for="quantity" class="col-sm-2 col-form-label">Product Quantity</label>
+            <label for="quantity" class="col-sm-2 col-form-label">Number</label>
       <div class="col-sm-10">
 
-      <input type="number" class="form-control @error('request.deliveryToNumber') is-invalid @enderror" placeholder="Row Metarial deliveryToNumber" id="deliveryToNumber" wire:model="request.deliveryToNumber">
+      <input type="tel" class="form-control @error('request.delivery_to_phone') is-invalid @enderror" placeholder="Row Metarial deliveryToPhone" id="deliveryToPhone" wire:model="request.delivery_to_phone">
 
-      @error('request.deliveryToNumber')
+      @error('request.delivery_to_phone')
 
       <div class="invalid-feedback">
           {{$message}}
@@ -140,8 +157,35 @@
   </div>
   </div>
 
+  <div class="form-row mx-3 my-2">
+    <label for="note" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+
+      <textarea type="text" class="form-control @error('request.delivery_to_address') is-invalid @enderror  " placeholder="Company Address" name="note" id="note" wire:model.defer="request.delivery_to_address"></textarea>
+
+      @error('request.delivery_to_address')
+
+      <div class="invalid-feedback">
+         {{$message}}
+      </div>
+      @enderror
+    </div>
+    </div>
+
 
   <h4>Product Details</h4>
+
+  @php
+  if($selectedOrder ){
+
+    $collection = collect($selectedOrder->products );
+  $collect = $collection->implode('product_id',',');
+
+  $collected =explode(",",$collect);
+
+  }
+@endphp
+
   @foreach ($deliveryProducts as $index => $product)
 
 <div class="card" wire:loading.class="text-muted" >
@@ -152,15 +196,33 @@
 
     <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
     <div class="col-sm-10">
-    <input type="text"  class="form-control @error("deliveryProducts.".$index.".name") is-invalid @enderror  " wire:key="{{$loop->index}}" placeholder="Product Name" name="productName" id="productName" wire:model="deliveryProducts.{{$index}}.name">
+
+        {{-- {{$selectedOrder ? $selectedOrder->products : 'N/A'}} --}}
+       <select class="custom-select @error("deliveryProducts.".$index.".order_product_id")
+                  is-invalid
+                  @enderror"  wire:key="{{$loop->index}}"  wire:model="deliveryProducts.{{$index}}.order_product_id">
+                    <option value="">Please Select One</option>
+                    {{-- @forelse($selectedOrder ? ($selectedOrder->products->except(array_diff_key($collected, array_flip([$index])))) : []  as $id => $productList) --}}
+                     @forelse ($selectedOrder ? $selectedOrder->products : [] as $product)
+                    {{-- <option value="{{$id}}">{{$productList->details->name}}</option> --}}
+                    <option value="{{$product->id}}">{{$product->details->name}}</option>
+                    @empty
+
+                    @endforelse
 
 
-    @error("deliveryProducts.".$index.".name")
 
-    <div class="invalid-feedback">
-        {{$message}}
-    </div>
-    @enderror
+
+
+                  </select>
+
+                  @error("deliveryProducts.".$index.".order_product_id")
+
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+
   </div>
  </div>
 
@@ -180,10 +242,14 @@
     @enderror
   </div>
  </div>
+ @if (count($deliveryProducts ) > 1)
+
  <button class="btn btn-primary" type="button" wire:loading.attr='disabled' wire:click.defer='delete({{$index}})'>Delete</button>
+ @endif
 </div>
  @endforeach
  <button class="btn btn-primary" type="button"   wire:loading.attr='disabled'  wire:click.defer='addProduct'>Add Product</button>
+
 
 
 

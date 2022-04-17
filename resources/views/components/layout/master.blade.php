@@ -7,14 +7,28 @@
 <title>Shaaj Plastic</title>
 
 <!--------- Bootstrap link  ------------>
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> --}}
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!--------- Bootstrap link  ------------>
 
 <!------------ css link ------------>
 <link rel="stylesheet" href="{{asset('frontend/css/index.css')}}">
 <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/product.css')}}">
 <!------------ css link ------------>
-
+<style>
+    @font-face{
+        font-family: 'Xavier';
+        font-weight: normal;
+        font-style: normal;
+        src: url({{asset('font/xavier_inline-webfont.woff2')}}) format('woff2'),
+        url('{{asset('font/xavier_inline-webfont.woff')}}') format('woff');
+    }
+    .xavier{
+        font-family:Xavier !important;
+    }
+    </style>
 <!-- ----ashley font------>
 <link href="//db.onlinewebfonts.com/c/013e904f64d24e4b4e5f8db7bb96d9b9?family=Ashley+Inline" rel="stylesheet" type="text/css"/>
 <!------ashley font---- -->
@@ -23,7 +37,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <!--------- google fonts --------->
 
-
+ <!--Aos Scroll link -->
+ <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+ <!-- Aos Scroll link -->
 
 
 <!--------- font Awesome link  ------------>
@@ -48,6 +64,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 <!--Bootstrap4 jquery proper and link start -->
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 2000,
+      });
+    </script>
+    <!-- Aos Scroll script-->
 
 <script src="{{asset('frontend/js/index.js')}}"></script>
 @livewireScripts

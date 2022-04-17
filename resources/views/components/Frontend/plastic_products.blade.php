@@ -9,23 +9,24 @@
   <!------------ css link ------------>
   @endpush
 
+  <x-Frontend.partials.header :term=$term :details="$details"  :active="$active" ></x-Frontend.partials.header>
 
- <x-Frontend.partials.header></x-Frontend.partials.header>
  <x-Frontend.partials.preloader></x-Frontend.partials.preloader>
 
- <section class="plastic-product container">
-    <div class="plastic-product-wrapper">
-      <div class="all-title">
-        <h4 class="py-4 text-center">{{$categoryName}}</h4>
-      </div>
 
- @livewire('public-products',
- ['products' => $products]
- )
+      @livewire('public-products',
+      ['products' => $products,'categoryName' => $categoryName,'searchTerm' => $term ?? '']
+      )
 
-    </section>
 
-<x-Frontend.partials.footer></x-Frontend.partials.footer>
+    </div>
+  </section>
+
+
+
+
+
+  <x-Frontend.partials.footer :categories=$categories :details=$details></x-Frontend.partials.footer>
 <!-- footer end -->
 
 </x-layout.master>

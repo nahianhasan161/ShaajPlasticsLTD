@@ -12,6 +12,21 @@ class PlasticProductTable extends Component
     protected $listeners = ['deleteConfirmed','refresh' => '$refresh' ];
     public $bigPhoto;
 
+    public function isActive($id)
+    {
+        $product = $this->products->find($id);
+        if( $product->active == 0){
+            $product->update(['active' => 1]);
+        }
+        elseif($product->active  == 1){
+            $product->update(['active' => 0]);
+
+        }
+
+        $this->emit('$refresh');
+        $this->emit('alert',['icon' => 'success', 'title' =>'"'. $product->name .' status changed successfully to '. ($product->active == 1 ? 'Active' : 'Deactive') ]);
+    }
+
     public function updateProduct($id)
     {
         $this->emit('showModal');

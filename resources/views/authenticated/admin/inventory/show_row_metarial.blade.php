@@ -1,6 +1,6 @@
 <x-layout.admin>
 
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body class="sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
       <!-- Preloader -->
@@ -17,7 +17,7 @@
 
      <!-- Main Sidebar Container -->
 
-     <x-admin.partials.mainsidebar>
+     <x-admin.partials.mainsidebar active='inventory'>
 
 
     </x-admin.partials.mainsidebar>

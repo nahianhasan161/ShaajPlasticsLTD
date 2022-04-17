@@ -14,7 +14,7 @@ class CreateProductCategory extends Component
     use WithFileUploads;
     protected $listeners = ['updateModal'];
      public $photo;
-     public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg';
+    /*  public $tempImage = 'https://i.ibb.co/rskNr5J/bottomH.jpg'; */
      public $category;
     public $showEditModal = false;
     public $request = [
@@ -52,14 +52,14 @@ class CreateProductCategory extends Component
     public function updateProduct()
     {
         //dd(File::exists($this->request['image']));
-        $old = $this->request['image'];
+        $old = $this->category->image;
         $this->request['image'] = $this->photo ?? '';
+        $this->rules['request.image'] = 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=500,height=300';
 
-        $rules = $this->rules;
-        $rules['request.name'] = $rules['request.name'].','.$this->category->id;
+        $this->rules['request.name'] = $this->rules['request.name'].','.$this->category->id.',id,deleted_at,'.null;
 
 
-        $validatedData = $this->validate($rules);
+        $validatedData = $this->validate();
         $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
 
          if(empty($validatedData['request']['image'])){
@@ -75,9 +75,17 @@ class CreateProductCategory extends Component
         if( File::exists($old)){
             $s =  File::delete($old);
         }
+                $extension = $this->photo->getClientOriginalExtension();
+                $fileName = 'category'. time().'.'. $extension;
+            $Path =  $this->photo->storeAs('uploads/category', $fileName,'public');
 
-            $Path =  $this->photo->store('uploads/category','public');
-            $publicPath = 'storage/'. $Path;
+            if(env('APP_ENV') == 'production'){
+                $publicPath = publicPathHelper($Path) ;
+
+              }else{
+                $publicPath = 'storage/'. $Path;
+
+              }
 
             if(File::exists($publicPath)){
 
@@ -98,29 +106,38 @@ class CreateProductCategory extends Component
     }
     public function createProduct()
     {
-        //dd($this->photo);
-        $this->request['image'] = $this->photo ?? '';
-        //dd($this->request['image']);
 
-        $this->request['image'] = $this->tempImage;
+        $this->request['image'] = $this->photo ?? '';
+
         $validatedData = $this->validate([
 
-            'request.name' => 'required|unique:categories,name',
+            'request.name' => 'required|unique:categories,name,NULL,id,deleted_at,'.null,
 
             'request.slug' => '',
 
-            'request.image' => '', // 1MB Max
+            'request.image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=500,height=300', // 1MB Max
             ]
         );
+
+        $extension = $this->photo->getClientOriginalExtension();
+        $fileName = 'category'. time().'.'. $extension;
+        /*  dd($fileName); */
+       // $this->photo->move(); */
         $validatedData['request']['slug'] =  Str::slug($validatedData['request']['name'], '-');
-/*
-        $Path =  $this->photo->store('uploads/category','public');
-        $publicPath = 'storage/'. $Path;
+        $Path =  $this->photo->storeAs('uploads/category',$fileName,'public');
+        if(env('APP_ENV') == 'production'){
+            $publicPath = publicPathHelper($Path) ;
+
+          }else{
+            $publicPath = 'storage/'. $Path;
+
+          }
+
 
 
         $validatedData['request']['image'] = $publicPath;
-        $image = Image::make(public_path($publicPath))->resize(500,300);
-        $image->save(); */
+        $image = Image::make(public_path($publicPath))->fit(500,300);
+        $image->save();
 
         //Storage::disk('public')->put('image.jpg',$this->photo);
        //$image =  Image::make($publicPath)->fit('1200','1200');

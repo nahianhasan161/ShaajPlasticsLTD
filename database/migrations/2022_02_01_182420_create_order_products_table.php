@@ -21,6 +21,7 @@ class CreateOrderProductsTable extends Migration
 
             $table->string('productionPrice');
             $table->string('costingPrice');
+            $table->string('costType');
 
 
             $table->integer('product_id');

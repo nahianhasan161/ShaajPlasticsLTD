@@ -1,6 +1,6 @@
 <x-layout.admin >
 
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body class="sidebar-mini layout-fixed sidebar-collapse">
     <div class="wrapper">
 
       <!-- Preloader -->
@@ -18,7 +18,7 @@
 
      <!-- Main Sidebar Container -->
 
-     <x-admin.partials.mainsidebar>
+     <x-admin.partials.mainsidebar active='delivery'>
 
 
 
@@ -29,8 +29,9 @@
         <section class="content">
             <div class="container-fluid">
               <!-- Small boxes (Stat box) -->
-                @livewire('create-delivery-form')
-                @livewire('delivery-table')
+               {{--  @livewire('create-order-form',['modla' => 'App\\Models\\Delivery']) --}}
+             {{--    @livewire(create-delivery-form) --}}
+                @livewire('delivery-table',['Order' => $order])
               <!-- /.row -->
               <!-- Main row -->
 

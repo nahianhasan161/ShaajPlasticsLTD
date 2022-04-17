@@ -23,17 +23,23 @@ class CreateOrdersTable extends Migration
 
             $table->string('rate')->nullable();
             $table->string('note')->nullable();
+            $table->string('status')->default('active');
+            $table->string('payment_status')->default('notpaid');
 
 
-            $table->integer('company_id');
-            $table->integer('via_id');
+            $table->integer('advance')->default(0);
+            $table->integer('payable');
+            $table->integer('paid')->default(0);
+
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('via_id');
 
             $table->index('via_id');
             $table->index('company_id');
-           /*  $table->integer('max_number')->default(1); */
 
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

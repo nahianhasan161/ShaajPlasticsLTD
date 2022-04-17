@@ -17,6 +17,10 @@ class Production extends Model
     }
     public function producedMeterial()
     {
-        return $this->belongsTo(Production::class);
+        return $this->belongsTo(Production::class,'id','parent_id');
+    }
+    public function factory()
+    {
+        return $this->belongsTo(Factory::class);
     }
 }
