@@ -243,7 +243,18 @@
                     <td><span class="badge badge-success">{{ucWords($order->type)}}</span></td>
 
                     <td><span class="badge badge-success">{{ucWords($order->status)}}</span></td>
-                    <td> <span class="input-group-text">{{currencySignHelper($order->type). number_format((float)$order->paid, 2,)}}</span> </td>
+
+                     @php
+                     $total = 0;
+                     foreach ($order->products as $key => $product) {
+
+                         $total = $total + ($product->quantity * $product->costingPrice);
+                     }
+                 @endphp
+
+
+
+                    <td> <span class="input-group-text">{{currencySignHelper($order->type). number_format((float)$total, 2,)}}</span> </td>
                     <td>
                         <span class="input-group-text">{{currencySignHelper($order->type). number_format((float)$order->paid, 2,)}}</span>
 
@@ -255,7 +266,9 @@
                             </button>
 
                             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item  bg-secondary m-1" > <i class=" fa fa-pen"></i>Note </a>
+
+
+                                <button class="dropdown-item  bg-secondary  "  > <i class=" fa fa-pen"></i>Note </button>
                                 <a class="dropdown-item  bg-info m-1 "  href="/admin/order/invoice/{{$order->id}}"> <i class="fa fa-print" aria-hidden="true"></i> invoice</a>
                             <a class="dropdown-item  bg-warning m-1"  href="/admin/delivery/all/{{$order->id}}"> <i class=" fas fa-truck"></i>Delivery </a>
 
@@ -269,6 +282,8 @@
                           </div>
                     </td>
                     </tr>
+
+
                     <tr class="expandable-body d-none">
                     <td colspan="5">
                         @forelse(
@@ -287,10 +302,11 @@
                                     <th>Code</th>
                                     <th>Color</th>
                                     <th>weight</th>
-                                    <th>Quantity Type</th>
+                                    <th>Unit Type</th>
                                     <th>Stock Quantity</th>
                                     <th>Order Quantity</th>
                                     <th>Delivered</th>
+                                    <th>Total Price</th>
                                 </thead>
                                 <tbody>
 
@@ -304,6 +320,7 @@
                                         <td>{{$product->details->quantity}}</td>
                                         <td>{{$product->quantity}}</td>
                                         <td>{{$product->delivered}}</td>
+                                        <td><span class="input-group-text">{{currencySignHelper($order->type). number_format((float)($product->quantity * $product->costingPrice), 2,)}}</span></td>
                                     </tr>
                                 </tbody>
                                 </table>

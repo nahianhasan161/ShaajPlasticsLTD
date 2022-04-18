@@ -130,60 +130,59 @@
 
 
 
-     <h4>Product Details</h4>
+               <h4>Product Details</h4>
 
-     @php
-     if($selectedOrder ){
+               @php
+               if($selectedOrder ){
 
-       $collection = collect($selectedOrder->products );
-     $collect = $collection->implode('product_id',',');
+                 $collection = collect($deliveryProducts );
+               $collect = $collection->implode('order_product_id',',');
 
-     $collected =explode(",",$collect);
+               $collected =explode(",",$collect);
 
-     }
-   @endphp
+               }
+             @endphp
 
-     @foreach ($deliveryProducts as $index => $product)
+               @foreach ($deliveryProducts as $index => $product)
 
-   <div class="card" wire:loading.class="text-muted" >
+             <div class="card" wire:loading.class="text-muted" >
 
-   {{-- @dump("deliveryProducts.".$index.".name") --}}
-     <div class="form-row mx-3 my-2" >
-
-
-       <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
-       <div class="col-sm-10">
-
-           {{-- {{$selectedOrder ? $selectedOrder->products : 'N/A'}} --}}
-          <select class="custom-select @error("deliveryProducts.".$index.".order_product_id")
-                     is-invalid
-                     @enderror"  wire:key="{{$loop->index}}"  wire:model="deliveryProducts.{{$index}}.order_product_id">
-                       <option value="">Please Select One</option>
-                       {{-- @forelse($selectedOrder ? ($selectedOrder->products->except(array_diff_key($collected, array_flip([$index])))) : []  as $id => $productList) --}}
-                        @forelse ($selectedOrder ? $selectedOrder->products : [] as $product)
-                       {{-- <option value="{{$id}}">{{$productList->details->name}}</option> --}}
-                       <option value="{{$product->id}}">{{$product->details->name}}</option>
-                       @empty
-
-                       @endforelse
+             {{-- @dump("deliveryProducts.".$index.".name") --}}
+               <div class="form-row mx-3 my-2" >
 
 
+                 <label for="productName" class="col-sm-2 col-form-label">Product Name</label>
+                 <div class="col-sm-10">
+
+                     {{-- {{$selectedOrder ? $selectedOrder->products : 'N/A'}} --}}
+                    <select class="custom-select @error("deliveryProducts.".$index.".order_product_id")
+                               is-invalid
+                               @enderror"  wire:key="{{$loop->index}}"  wire:model="deliveryProducts.{{$index}}.order_product_id">
+                                 <option value="">Please Select One</option>
+                                 {{-- @forelse($selectedOrder ? ($selectedOrder->products->except(array_diff_key($collected, array_flip([$index])))) : []  as $id => $productList) --}}
+                                 @forelse ( $products ? $products->except(array_diff_key($collected, array_flip([$index]))) : [] as $id => $productList)
+
+                                 <option value="{{$id}}">{{$productList}}</option>
+
+                                 @empty
+
+                                 @endforelse
 
 
 
-                     </select>
-
-                     @error("deliveryProducts.".$index.".order_product_id")
-
-                   <div class="invalid-feedback">
-                       {{$message}}
-                   </div>
-                   @enderror
-
-     </div>
-    </div>
 
 
+                               </select>
+
+                               @error("deliveryProducts.".$index.".order_product_id")
+
+                             <div class="invalid-feedback">
+                                 {{$message}}
+                             </div>
+                             @enderror
+
+               </div>
+              </div>
 
     <div class="form-row mx-3 my-2">
 

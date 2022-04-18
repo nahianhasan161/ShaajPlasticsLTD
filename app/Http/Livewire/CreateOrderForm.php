@@ -317,7 +317,7 @@ class CreateOrderForm extends Component
     public function render()
     {
 
-        $products = $this->products->pluck('name','id');
+        $products = $this->products->pluck('code','id');
        $this->newProduct = $this->product;
         return view('livewire.create-order-form',['products' => $products,'companies' => $this->companies,'vias' => $this->vias]);
     }

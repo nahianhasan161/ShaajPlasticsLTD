@@ -147,7 +147,8 @@ class CreateDeliveryForm extends Component
 
     public function render()
     {
+        $products = $this->selectedOrder ? $this->selectedOrder->products->pluck('details.code','id') : null;
 
-        return view('livewire.create-delivery-form',['clients' => $this->clients,'orders' => $this->orders]);
+        return view('livewire.create-delivery-form',['clients' => $this->clients,'orders' => $this->orders,'products' => $products]);
     }
 }

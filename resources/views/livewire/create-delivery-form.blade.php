@@ -178,8 +178,8 @@
   @php
   if($selectedOrder ){
 
-    $collection = collect($selectedOrder->products );
-  $collect = $collection->implode('product_id',',');
+    $collection = collect($deliveryProducts );
+  $collect = $collection->implode('order_product_id',',');
 
   $collected =explode(",",$collect);
 
@@ -203,9 +203,10 @@
                   @enderror"  wire:key="{{$loop->index}}"  wire:model="deliveryProducts.{{$index}}.order_product_id">
                     <option value="">Please Select One</option>
                     {{-- @forelse($selectedOrder ? ($selectedOrder->products->except(array_diff_key($collected, array_flip([$index])))) : []  as $id => $productList) --}}
-                     @forelse ($selectedOrder ? $selectedOrder->products : [] as $product)
-                    {{-- <option value="{{$id}}">{{$productList->details->name}}</option> --}}
-                    <option value="{{$product->id}}">{{$product->details->name}}</option>
+                    @forelse ( $products ? $products->except(array_diff_key($collected, array_flip([$index]))) : [] as $id => $productList)
+
+                    <option value="{{$id}}">{{$productList}}</option>
+
                     @empty
 
                     @endforelse

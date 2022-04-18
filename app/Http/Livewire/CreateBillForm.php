@@ -172,10 +172,14 @@ class CreateBillForm extends Component
     {
         return Order::where('status','active')->get();
     }
-
+  /*   public function getProductsProperty()
+    {
+        return $this->selectedOrder ? $this->selectedOrder->products : null;
+    }
+ */
     public function render()
     {
-       /*  dd($this->order); */
-        return view('livewire.create-bill-form',['clients' => $this->clients,'orders' => $this->orders]);
+        $products = $this->selectedOrder ? $this->selectedOrder->products->pluck('details.code','id') : null;
+        return view('livewire.create-bill-form',['clients' => $this->clients,'orders' => $this->orders,'products'=>$products]);
     }
 }

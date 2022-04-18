@@ -18,11 +18,11 @@
 
      <!-- Main Sidebar Container -->
 
-     <x-admin.partials.mainsidebar>
+     <x-admin.partials.mainsidebar active="order">
 
 
 
-    </x-admin.partials.mainsidebar active="order">
+    </x-admin.partials.mainsidebar >
 
     <!-- Content Wrapper. Contains page content -->
     <x-admin.partials.maincontent>
